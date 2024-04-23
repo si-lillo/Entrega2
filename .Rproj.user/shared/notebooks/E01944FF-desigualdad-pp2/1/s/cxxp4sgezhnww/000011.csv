@@ -1,0 +1,65 @@
+"0",""
+"0","summarytools::dfSummary(proc_data, plain.ascii = FALSE)"
+"1","### Data Frame Summary  
+#### proc_data  
+**Label:** Estudio Longitudinal Social de Chile. Ola 2016. Version 4.00 (10/06/2020)  
+**Dimensions:** 742 x 14  
+**Duplicates:** 8  
+
+-----------------------------------------------------------------------------------------------------------------------------------
+No   Variable        Label       Stats / Values                   Freqs (% of Valid)   Graph                   Valid      Missing  
+---- --------------- ----------- -------------------------------- -------------------- ----------------------- ---------- ---------
+1    sexo\           Sexo        1\. Hombre\                      319 (43.0%)\         IIIIIIII \              742\       0\       
+     [factor]                    2\. Mujer                        423 (57.0%)          IIIIIIIIIII             (100.0%)   (0.0%)   
+
+2    edad\           Edad        Mean (sd) : 39.9 (14.5)\         60 distinct values   \ \ : .\                742\       0\       
+     [numeric]                   min < med < max:\                                     : : :\                  (100.0%)   (0.0%)   
+                                 18 < 37 < 78\                                         : : : : . :\                                
+                                 IQR (CV) : 22 (0.4)                                   : : : : : : :\                              
+                                                                                       : : : : : : : : : .                         
+
+3    educacion\      Educación   1\. Educacion Técnica Superio\   346 (46.6%)\         IIIIIIIII \             742\       0\       
+     [factor]                    2\. Educación Universitaria      396 (53.4%)          IIIIIIIIII              (100.0%)   (0.0%)   
+
+4    apoyo_causa\                1\. Poco\                        491 (66.2%)\         IIIIIIIIIIIII \         742\       0\       
+     [factor]                    2\. Algo\                        197 (26.5%)\         IIIII \                 (100.0%)   (0.0%)   
+                                 3\. Mucha                        54 ( 7.3%)           I                                           
+
+5    part_marcha\                1\. Poco\                        568 (76.5%)\         IIIIIIIIIIIIIII \       742\       0\       
+     [factor]                    2\. Algo\                        128 (17.3%)\         III \                   (100.0%)   (0.0%)   
+                                 3\. Mucha                        46 ( 6.2%)           I                                           
+
+6    part_huelga\                1\. Poco\                        638 (86.0%)\         IIIIIIIIIIIIIIIII \     742\       0\       
+     [factor]                    2\. Algo\                        77 (10.4%)\          II \                    (100.0%)   (0.0%)   
+                                 3\. Mucha                        27 ( 3.6%)                                                       
+
+7    rrss_pol\                   1\. Poco\                        402 (54.2%)\         IIIIIIIIII \            742\       0\       
+     [factor]                    2\. Algo\                        159 (21.4%)\         IIII \                  (100.0%)   (0.0%)   
+                                 3\. Mucha                        181 (24.4%)          IIII                                        
+
+8    pert_jdv\                   1\. No\                          557 (75.1%)\         IIIIIIIIIIIIIII \       742\       0\       
+     [factor]                    2\. Si                           185 (24.9%)          IIII                    (100.0%)   (0.0%)   
+
+9    pert_pp\                    1\. No\                          688 (92.7%)\         IIIIIIIIIIIIIIIIII \    742\       0\       
+     [factor]                    2\. Si                           54 ( 7.3%)           I                       (100.0%)   (0.0%)   
+
+10   pert_cde\                   1\. No\                          683 (92.0%)\         IIIIIIIIIIIIIIIIII \    742\       0\       
+     [factor]                    2\. Si                           59 ( 8.0%)           I                       (100.0%)   (0.0%)   
+
+11   interes_pol\                1\. Sin interés\                 304 (41.0%)\         IIIIIIII \              742\       0\       
+     [factor]                    2\. Poco interés\                292 (39.4%)\         IIIIIII \               (100.0%)   (0.0%)   
+                                 3\. Alto interés                 146 (19.7%)          III                                         
+
+12   autoubic_pol\               1\. Izquierda\                   136 (18.3%)\         III \                   742\       0\       
+     [factor]                    2\. Centro\                      285 (38.4%)\         IIIIIII \               (100.0%)   (0.0%)   
+                                 3\. Educacion superior\          118 (15.9%)\         III \                                       
+                                 4\. Ninguna                      203 (27.4%)          IIIII                                       
+
+13   part_movsoc\                1\. Baja\                        506 (76.8%)\         IIIIIIIIIIIIIII \       659\       83\      
+     [factor]                    2\. Alta                         153 (23.2%)          IIII                    (88.8%)    (11.2%)  
+
+14   NSE\                        1\. NSE Alto\                    8 ( 1.1%)\           \                       742\       0\       
+     [character]                 2\. NSE Bajo\                    285 (38.4%)\         IIIIIII \               (100.0%)   (0.0%)   
+                                 3\. NSE Medio                    449 (60.5%)          IIIIIIIIIIII                                
+-----------------------------------------------------------------------------------------------------------------------------------
+"
