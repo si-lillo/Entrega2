@@ -3,7 +3,7 @@
     "path": "C:/Users/sivim/OneDrive/Escritorio/OPT. R/Entrega2/Processing/Preparación.R",
     "project_path": "Processing/Preparación.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "949001466",
     "contents": "",
     "dirty": false,
     "created": 1713850526548.0,
@@ -11,14 +11,16 @@
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "221,0",
+        "scrollLine": "205"
     },
     "folds": "",
-    "lastKnownWriteTime": 1713847969,
+    "lastKnownWriteTime": 1713850787,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1713847969,
+    "last_content_update": 1713850787653,
     "read_only": false,
     "read_only_alternatives": []
 }

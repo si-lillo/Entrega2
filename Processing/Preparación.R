@@ -3,7 +3,6 @@ rm(list=ls())
 options(scipen=999)
 
 #Cargar paquetes
-install.packages("pacman")
 pacman::p_load(sjlabelled,
                dplyr, #Manipulacion de datos
                stargazer, #Tablas
