@@ -26,11 +26,8 @@ proc_data <- elsoc_2016 %>% select(m0_sexo,
                                    m0_edad,
                                    m01,
                                    c08_01:c08_04,
-                                   c12_01,
                                    c12_03,
-                                   c12_08,
                                    c13,
-                                   c15,
                                    c22,
                                    c33)
 names(proc_data)
@@ -127,31 +124,17 @@ proc_data$rrss_pol <- factor(proc_data$rrss_pol,
                                 labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
 
 ##Membresías
-proc_data <- proc_data %>% rename("pert_jdv"=c12_01,  
-                                  "pert_pp"=c12_03, 
-                                  "pert_cde"=c12_08)
+proc_data <- proc_data %>% rename("pert_pp"=c12_03)
 
-
-proc_data$pert_jdv <- set_label(proc_data$pert_jdv, label = "Pertenece: Junta de vecinos")
-get_label(proc_data$pert_jdv)
 proc_data$pert_pp <- set_label(proc_data$pert_pp, label = "Pertenece: Partido Político")
 get_label(proc_data$pert_pp)
-proc_data$pert_cde <- set_label(proc_data$pert_cde, label = "Pertenece: Centro de estudiantes")
-get_label(proc_data$pert_cde)
 
-frq(proc_data$pert_jdv)
 frq(proc_data$pert_pp)
-frq(proc_data$pert_cde)
 
-proc_data$pert_jdv <- factor(proc_data$pert_jdv,
-                                levels = c(1, 2, 3),
-                                labels = c("No", "Si", "Si"))
 proc_data$pert_pp <- factor(proc_data$pert_pp,
                              levels = c(1, 2, 3),
                              labels = c("No", "Si", "Si"))
-proc_data$pert_cde <- factor(proc_data$pert_cde,
-                             levels = c(1, 2, 3),
-                             labels = c("No", "Si", "Si"))
+
 
 ##Interés en la política
 proc_data <- proc_data %>% rename("interes_pol"=c13)
@@ -163,17 +146,6 @@ get_label(proc_data$interes_pol)
 proc_data$interes_pol <- factor(proc_data$interes_pol,
                              levels = c(1, 2, 3, 4, 5),
                              labels = c("Sin interés", "Poco interés", "Poco interés", "Alto interés", "Alto interés"))
-
-##Autoubicación Política
-proc_data <- proc_data %>% rename("autoubic_pol"=c15)
-frq(proc_data$autoubic_pol)
-
-proc_data$autoubic_pol <- set_label(proc_data$autoubic_pol, label = "Ubicación Política")
-get_label(proc_data$autoubic_pol)
-proc_data$autoubic_pol <- car::recode(proc_data$autoubic_pol, "c(0,1,2,3)=1; c(4,5,6)=2; c(7,8,9,10)=3; c(11,12)=4")
-proc_data$autoubic_pol <- factor(proc_data$autoubic_pol,
-                             labels = c("Izquierda", "Centro", "Educacion superior", "Ninguna"),
-                             levels = c(1, 2, 3, 4))
 
 ##Participación en Movimientos Sociales
 proc_data <- proc_data %>% rename("part_movsoc"=c22)
@@ -229,11 +201,10 @@ sjmisc::descr(proc_data,
               show = c("label","range", "mean", "sd", "NA.prc", "n")) %>%
   kable(.,"markdown")
 
-
 ##Correlación
 proc_data <- mutate_all(proc_data, as.numeric)
 
-M <- cor(indicadores,
+M <- cor(proc_data,
          use = "complete.obs")
 M
 
@@ -242,28 +213,21 @@ sjPlot::tab_corr(proc_data,
 
 corrplot.mixed(M)
 
+M2 <- cor(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
+                        rrss_pol, pert_pp, interes_pol, part_movsoc, NSE), use = "complete.obs")
+corrplot.mixed(M2)
 
-indicadores = proc_data %>% 
+psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
+                        rrss_pol, pert_pp, interes_pol, part_movsoc, NSE))
+
+psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
+                           rrss_pol, pert_pp, part_movsoc))
+
+escala = proc_data %>% 
   rowwise() %>%
-  mutate(participacion = mean(c(apoyo_causa, part_marcha,part_huelga,rrss_pol,part_movsoc)),
-         pertenencia = mean(c(pert_jdv, pert_pp, pert_cde))) %>% 
+  mutate(participacion = mean(c(proc_data, apoyo_causa, part_marcha, part_huelga, 
+                                rrss_pol, pert_pp, part_movsoc)),
+         interes_politico = mean(c(interes_pol)),
+         nse= mean(c(NSE))) %>% 
   ungroup()
 
-indicadores = indicadores %>% 
-  rowwise() %>%
-  mutate(interes_politico = mean(c(participacion, pertenencia))) %>% 
-  ungroup()
-
-indicadores %>% select(interes_politico) %>% head(10) # Primeros 10 casos
-summary(indicadores$interes_politico)
-
-indicadores <- indicadores %>%
-  mutate(interes_politico = case_when(
-    participacion >= 0.5 & pertenencia >= 0.5 ~ "Alto",
-    participacion >= 0.5 & pertenencia < 0.5 ~ "Participación Alta, Pertenencia Baja",
-    participacion < 0.5 & pertenencia >= 0.5 ~ "Participación Baja, Pertenencia Alta",
-    TRUE ~ "Bajo"
-  ))
-prop.table(table(indicadores$interes_politico))*100
-
-psych::alpha(dplyr::select(indicadores, participacion, pertenencia))
