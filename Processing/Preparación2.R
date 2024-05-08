@@ -231,9 +231,7 @@ sjmisc::descr(proc_data,
 
 
 ##Correlación
-indicadores <- proc_data %>%  
-  na.omit() %>% # Eliminar Na's
-  mutate_all(~(as.numeric(.))) # Convertimos todas las variables a numéricas
+proc_data <- mutate_all(proc_data, as.numeric)
 
 M <- cor(indicadores,
          use = "complete.obs")
@@ -241,3 +239,31 @@ M
 
 sjPlot::tab_corr(proc_data, 
                  triangle = "lower")
+
+corrplot.mixed(M)
+
+
+indicadores = proc_data %>% 
+  rowwise() %>%
+  mutate(participacion = mean(c(apoyo_causa, part_marcha,part_huelga,rrss_pol,part_movsoc)),
+         pertenencia = mean(c(pert_jdv, pert_pp, pert_cde))) %>% 
+  ungroup()
+
+indicadores = indicadores %>% 
+  rowwise() %>%
+  mutate(interes_politico = mean(c(participacion, pertenencia))) %>% 
+  ungroup()
+
+indicadores %>% select(interes_politico) %>% head(10) # Primeros 10 casos
+summary(indicadores$interes_politico)
+
+indicadores <- indicadores %>%
+  mutate(interes_politico = case_when(
+    participacion >= 0.5 & pertenencia >= 0.5 ~ "Alto",
+    participacion >= 0.5 & pertenencia < 0.5 ~ "Participación Alta, Pertenencia Baja",
+    participacion < 0.5 & pertenencia >= 0.5 ~ "Participación Baja, Pertenencia Alta",
+    TRUE ~ "Bajo"
+  ))
+prop.table(table(indicadores$interes_politico))*100
+
+psych::alpha(dplyr::select(indicadores, participacion, pertenencia))
