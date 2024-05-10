@@ -301,3 +301,41 @@ Como se puede observar, existe una correlación negativa débil entre la edad y 
 psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
                            rrss_pol, part_movsoc, interes_pol, NSE, educacion))
 ```
+
+El coeficiente de Alfa de Cronbach calculado para el conjunto de ítems es de 0,65 al 95% de confianza, lo que nos indica una consistencia débil de las respuestas entre los ítems relacionados. En otras palabras, nos indica que la confiabilidad de los ítems es débil. 
+
+
+## Construcción de Escala
+```{r}
+proc_data <- proc_data %>% 
+  rowwise() %>% 
+  mutate(participacion = sum(apoyo_causa, part_marcha, part_huelga, 
+                                      rrss_pol, part_movsoc))
+summary(proc_data$participacion)
+```
+```{r}
+ggplot(proc_data, aes(x = participacion)) +
+  geom_histogram(binwidth=0.6, colour="black", fill="yellow") +
+  theme_bw() +
+  xlab("Participación Política") +
+  ylab("Cantidad")
+```
+
+Luego de construida una escala de participación, este gráfico muestra que la mayor concentración de casos se encuentra en la categoría 5, sumdo a un promedio de 6,91, podemos afirmar que la participación política de estudiantes universitarios en Chile es baja. 
+
+```{r}
+proc_data <- proc_data %>% 
+  rowwise() %>% 
+  mutate(interes_politico = sum(interes_pol))
+summary(proc_data$interes_politico)
+```
+```{r}
+ggplot(proc_data, aes(x = interes_politico)) +
+  geom_histogram(binwidth=0.6, colour="black", fill="yellow") +
+  theme_bw() +
+  xlab("Interés Político") +
+  ylab("Cantidad")
+```
+
+Respecto a la costrucción de escala de interés político, el gráfico nos muestra que la mayor parte de los casos se encuentra en la categoría 1 y 2, sumado a un promedio de 1,6 podemos afirmar que el interés político de los estudiantes universitarios en Chile es bajo.
+

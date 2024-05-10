@@ -1015,7 +1015,7 @@ No   Variable       Label       Stats / Values            Freqs (% of Valid)   G
 <pre><code>Switching method to 'browser'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Output file written: C:\Users\sivim\AppData\Local\Temp\RtmpER5eOl\file2b2c4111140a.html</code></pre>
+<pre><code>Output file written: C:\Users\sivim\AppData\Local\Temp\RtmpMJtbal\file6444e8972f0.html</code></pre>
 </div>
 </div>
 <p>Como se observa en la tabla, la muestra final está compuesta en un 45,7% por hombres y un 54,3% de mujeres. El promedio de edad es de 28 años, con una desviación estándar de 4,9 años. Se puede observar que un 59,8% de los encuestados han cursado estudios superiores, versus un 40,2% que no. En el resto de variables que abarcan participación política, la mayoría de los estudiantes reportan poco apoyo a causas (67.7%), poca participación en marchas (79,35%), poca participación en huelgas (88,5%), y poco uso de redes sociales para fines políticos (51,4%). Respecto a la pertenencia, la mayoría de los estudiantes no son miembros de partidos políticos (94.9%). Alrededor del 47,4% de los estudiantes reportan poco interés político, mientras que el 40,4% reporta algo de interés y el 12,2% reporta alto interés. La mayoría de los estudiantes reportan una participación baja en movimientos sociales (71,1%). Finalmente, la mayoría de los estudiantes tienen un nivel socioeconómico bajo (52,0%), seguido por un 47,5% con nivel socioeconómico medio y solo un pequeño porcentaje (0,5%) con nivel socioeconómico alto.</p>
@@ -1519,6 +1519,53 @@ NSE         0.52 0.48 0.01    0
 educacion   0.40 0.60 0.00    0</code></pre>
 </div>
 </div>
+<p>El coeficiente de Alfa de Cronbach calculado para el conjunto de ítems es de 0,65 al 95% de confianza, lo que nos indica una consistencia débil de las respuestas entre los ítems relacionados. En otras palabras, nos indica que la confiabilidad de los ítems es débil.</p>
+</section>
+<section id="construcción-de-escala" class="level2">
+<h2 class="anchored" data-anchor-id="construcción-de-escala">Construcción de Escala</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>proc_data <span class="ot">&lt;-</span> proc_data <span class="sc">%&gt;%</span> </span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">participacion =</span> <span class="fu">sum</span>(apoyo_causa, part_marcha, part_huelga, </span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>                                      rrss_pol, part_movsoc))</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(proc_data<span class="sc">$</span>participacion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   5.00    5.00    6.00    6.91    8.00   15.00 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(proc_data, <span class="fu">aes</span>(<span class="at">x =</span> participacion)) <span class="sc">+</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.6</span>, <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"yellow"</span>) <span class="sc">+</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Participación Política"</span>) <span class="sc">+</span></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Cantidad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="desigualdad-pp3_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Luego de construida una escala de participación, este gráfico muestra que la mayor concentración de casos se encuentra en la categoría 5, sumdo a un promedio de 6,91, podemos afirmar que la participación política de estudiantes universitarios en Chile es baja.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>proc_data <span class="ot">&lt;-</span> proc_data <span class="sc">%&gt;%</span> </span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">interes_politico =</span> <span class="fu">sum</span>(interes_pol))</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(proc_data<span class="sc">$</span>interes_politico)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   1.000   2.000   1.649   2.000   3.000 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(proc_data, <span class="fu">aes</span>(<span class="at">x =</span> interes_politico)) <span class="sc">+</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.6</span>, <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"yellow"</span>) <span class="sc">+</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Interés Político"</span>) <span class="sc">+</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Cantidad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="desigualdad-pp3_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Respecto a la costrucción de escala de interés político, el gráfico nos muestra que la mayor parte de los casos se encuentra en la categoría 1 y 2, sumado a un promedio de 1,6 podemos afirmar que el interés político de los estudiantes universitarios en Chile es bajo.</p>
 
 </section>
 </section>
