@@ -3,7 +3,7 @@
     "path": "C:/Users/sivim/OneDrive/Escritorio/OPT. R/Entrega2/desigualdad-pp3.qmd",
     "project_path": "desigualdad-pp3.qmd",
     "type": "quarto_markdown",
-    "hash": "3478434778",
+    "hash": "59959351",
     "contents": "",
     "dirty": false,
     "created": 1715305623813.0,
@@ -15,18 +15,18 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "240,0",
+        "cursorPosition": "299,0",
         "scrollLine": "0",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "13697:13829"
+        "rmdVisualModeLocation": "17209:16719"
     },
     "folds": "",
-    "lastKnownWriteTime": 1715308041,
+    "lastKnownWriteTime": 1715310627,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1715308042732,
+    "last_content_update": 1715310627557,
     "read_only": false,
     "read_only_alternatives": []
 }

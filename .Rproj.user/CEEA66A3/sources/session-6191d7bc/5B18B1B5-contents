@@ -231,7 +231,12 @@ graph1 <- proc_data %>%
     "Participación en Movimientos Sociales" = part_movsoc
   ) %>%
   sjPlot::plot_stackfrq() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom")+
+  labs(
+    title = "Participación en diferentes actividades sociales",
+    x = "Actividades",
+    y = "Frecuencia"
+  )
 
 graph1
 ```
@@ -248,7 +253,51 @@ graph2 <- proc_data %>% ggplot(aes(x = interes_pol, fill = NSE)) +
   xlab("Interés Político") +
   ylab("Cantidad") + 
   labs(fill="NSE")+
-  scale_fill_discrete(labels = c('NSE Bajo', 'NSE Medio', 'NSE Alto'))
+  scale_fill_discrete(labels = c('NSE Bajo', 'NSE Medio', 'NSE Alto')) +
+  labs(title = "Relación entre Interés Político y NSE")
+
 
 graph2
+```
+
+En este gráfico, podemos observar como se relacionan el Interés Político y el Nivel Socioeconómico de los estudiantes universitarios. En general, se observa un alto desinterés sin importar el NSE de cada estudiante. Quienes presentan un mayor interés político, son aquellos estudiantes que tienen un NSE Medio.
+
+El estudio sobre las tendencias de desigualdad y participación política entre estudiantes universitarios en Chile destaca la compleja interacción entre factores sociales, económicos y educativos en la configuración de actitudes políticas y comportamientos cívicos. La desigualdad social y económica en Chile no solo afecta la calidad de vida de los ciudadanos, sino que también influye en su participación política y en la percepción de las instituciones democráticas.
+
+La educación cívica emerge como una herramienta esencial para abordar estas desigualdades y fomentar la participación ciudadana informada. Sin embargo, el estudio sugiere que el nivel socioeconómico también desempeña un papel significativo en el grado de interés político de los estudiantes, lo que subraya la importancia de considerar el contexto socioeconómico al analizar la participación política de los jóvenes.
+
+La hipótesis planteada en el estudio, que sugiere que una mayor percepción de la desigualdad social entre los estudiantes universitarios se relaciona con una mayor participación política, abre nuevas vías de investigación sobre cómo los jóvenes responden a las disparidades socioeconómicas y buscan influir en el cambio social y económico a través de la acción política.
+
+## Asociación de Variables
+
+```{r}
+dim(proc_data)
+
+sjmisc::descr(proc_data,
+              show = c("label","range", "mean", "sd", "NA.prc", "n")) %>%
+  kable(.,"markdown")
+```
+
+## Correlación
+
+```{r}
+proc_data <- mutate_all(proc_data, as.numeric)
+
+M <- cor(proc_data,
+         use = "complete.obs")
+M
+
+sjPlot::tab_corr(proc_data, 
+                 triangle = "lower")
+
+corrplot.mixed(M)
+```
+
+Como se puede observar, existe una correlación negativa débil entre la edad y la educación, lo que sugiere que las personas más jóvenes, tienen a tener niveles educativos un poco más altos que quieres son más adultos. En el caso del interés político y el NSE, podemos observar una correlación positiva moderada, lo cual nos indica que las personas con un NSE más alto tienen a tener un mayor interés en la política que quienes tienen NSE bajo. Respecto al apoyo a causas políticas y la participación en marchas y huelgas, existen correlaciones positivas moderadas, lo que nos sugiere que las personas que participan en una causa específica también tienen a participar en huelgas o marchas relacionas a esa causa. También se observan correlaciones positivas moderadas entre la participación en redes sociales y la participación en marchas y huelgas. Esto indica que las personas que participan activamente en redes sociales también tienden a participar en actividades de protesta física. Respecto a la edad y la participación en marchas y huelgas, existe una correlación negativa débil, lo que nos indica que son las personas más jóvenes quienes tienden a participar más en las actividades presenciales.
+
+## Alfa de Cronbach 
+
+```{r}
+psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
+                           rrss_pol, part_movsoc, interes_pol, NSE, educacion))
 ```

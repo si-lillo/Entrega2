@@ -175,7 +175,12 @@ graph1 <- proc_data %>%
     "Participación en Movimientos Sociales" = part_movsoc
   ) %>%
   sjPlot::plot_stackfrq() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom")+
+  labs(
+    title = "Participación en diferentes actividades sociales",
+    x = "Actividades",
+    y = "Frecuencia"
+  )
 
 graph1
 ggsave(graph1, file="Output/graph1.png")
@@ -209,11 +214,6 @@ sjPlot::tab_corr(proc_data,
                  triangle = "lower")
 
 corrplot.mixed(M)
-
-
-M2 <- cor(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
-                        rrss_pol, pert_pp, part_movsoc), use = "complete.obs")
-corrplot.mixed(M2)
 
 
 psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
