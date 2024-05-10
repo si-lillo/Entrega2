@@ -1,0 +1,3 @@
+"0","##Ajustes Iniciales"
+"0","rm(list=ls())"
+"0","options(scipen=999)"

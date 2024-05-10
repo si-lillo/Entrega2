@@ -1,0 +1,61 @@
+---
+title: "Desigualdad y Participación Política"
+author: "Sivonney Lillo Godoy"
+format: html
+editor: visual
+bibliography: desigualdad-pp.bib
+link-citations: true 
+---
+
+# "Tendencias de Desigualdad y Participación Política: Estudiantes Universitarios en Chile"
+
+En el Chile actual, la desigualdad social y la estratificación económica han emergido como temas de alta relevancia sociológica, planteando desafíos significativos para la cohesión social y la justicia distributiva en las sociedades contemporáneas. La percepción de la desigualdad juega un papel crucial en la configuración de actitudes y comportamientos sociales y políticos de los individuos, y su impacto se refleja de manera notable en la participación política de la población.
+
+La educación cívica y la política educativa se presentan como herramientas fundamentales para abordar esta problemática, ya que contribuyen a la formación de ciudadanos informados y comprometidos con el bienestar colectivo. En este contexto, comprender la relación entre la percepción de la desigualdad, la educación cívica y la participación política de estudiantes universitarios adquiere una relevancia particular, ya que estos jóvenes representan una parte importante de la población activa en la esfera política.
+
+En este estudio, se propone analizar cómo la percepción de la desigualdad social influye en la participación política de los estudiantes universitarios en Chile. Diversas investigaciones indican que la participación política está estrechamente relacionada con el estatus socioeconómico, siendo aquellos con un nivel socioeconómico más alto más propensos a involucrarse en el sistema político.[@castilloSocialInequalityChanges2014] La desigualdad social en Chile ha sido un tema recurrente que ha generado tensiones y debates en la sociedad, contribuyendo a la fragmentación social y a la percepción de injusticia entre diferentes estratos de la población. Esta disparidad socioeconómica no solo ha impactado en la calidad de vida de los ciudadanos, sino también en su participación política y en la legitimidad de las instituciones democráticas.
+
+Además, en la literatura existe una creciente preocupación por las menores tasas de participación electoral entre las cohortes de edad más joven. Por ejemplo, un estudio [@marchoogheVotersCandidatesFuture2013] investigó la disposición a votar entre adolescentes de 14 años de 22 países europeos y encontró que, si bien la disposición a votar sigue siendo elevada en este grupo de edad, existe una clara división de género. Las niñas son más propensas a afirmar que votarán, mientras que los niños se ven más a sí mismos como futuros candidatos electorales. Un clima de aula abierta en la escuela contribuye a la voluntad de votar en futuras elecciones. Sin embargo, elementos que impactan en la participación de adultos no tienen un efecto significativo en la intención de votar entre adolescentes, lo que sugiere que la menor tasa de participación observada entre los más jóvenes no puede atribuirse simplemente a una falta de motivación política, sino que deben considerarse otros elementos para explicar esta tendencia a la baja.
+
+"La evidencia empírica ha demostrado consistentemente que la participación política está relacionada positivamente con el entorno socioeconómico. Además, investigaciones recientes sugieren que los niños que provienen de familias de bajo estatus ya están menos dispuestos a involucrarse políticamente." [@juancarloscastilloMitigatingPoliticalParticipation2015]
+
+Ligado a lo anterior, las influencias positivas de condiciones socioeconómicas más favorables representan un aumento del 36% en los puntajes de las pruebas escolares. Estos hallazgos sugieren que en el sistema educativo chileno, caracterizado por su segregación socioeconómica, estos efectos podrían contribuir a ampliar la brecha en el rendimiento académico en el ámbito de la educación cívica entre los estudiantes de escuelas con mayores recursos y aquellos con menos recursos. Además, este estudio revela que, en promedio, los estudiantes con un estatus socioeconómico más elevado son más susceptibles a estas influencias, y que los efectos de la composición socioeconómica son más pronunciados en el sector privado subvencionado que en el sector público. [@diegocolladoEffectsClassroomSocioeconomic2015]
+
+En ese sentido, la hipótesis central que orientará esta investigación es que a medida que aumenta el nivel de percepción de la desigualdad social entre los estudiantes universitarios, también aumenta su participación política. Se espera que la percepción de la desigualdad social actúe como un predictor principal de la participación política de estos jóvenes, motivándolos a comprometerse activamente en la esfera política para abogar por cambios sociales y económicos.
+
+Para efectos de este trabajo, utilizaré datos obtenidos a través del Estudio Longuitudinal de Chile (ELSOC_ola2016), con el fin de observar como se comporta la participación política de los universitarios en Chile. Para ello, se considerarán aquellas personas que cursen una institución de educación superior, en un rango etario de 18 a 35 años.
+
+# Trabajo en R
+
+## Ajustes iniciales
+
+```{r}
+##Ajustes Iniciales
+rm(list=ls())
+options(scipen=999)
+```
+
+## Carga de paquetes
+
+```{r}
+pacman::p_load(sjlabelled,
+               dplyr, #Manipulacion de datos
+               stargazer, #Tablas
+               sjmisc, # Tablas
+               summarytools, # Tablas
+               kableExtra, #Tablas
+               sjPlot, #Tablas y gráficos
+               corrplot, # Correlaciones
+               sessioninfo, # Información de la sesión de trabajo
+               ggplot2,# Para la mayoría de los gráficos
+               GGally)
+```
+
+## Cargar base de datos
+
+```{r}
+load("Input/data original/ELSOC_W01_v4.01_R.RData")
+View(elsoc_2016)
+names(elsoc_2016)
+dim(elsoc_2016)
+```

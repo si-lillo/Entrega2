@@ -37,18 +37,9 @@ sjlabelled::get_label(proc_data)
 proc_data <- proc_data %>% set_na(., na = c(-999, -888))
 proc_data <- na.omit(proc_data)
 
-##Edad
-frq(proc_data$m0_edad)
-proc_data <- rename(proc_data,"edad"=m0_edad)
-get_label(proc_data$edad)
-proc_data$edad <- set_label(x = proc_data$edad,label = "Edad")
-frq(proc_data$edad)
-proc_data <- subset(proc_data, edad >= 18 & edad <= 35)
-
 proc_data <-as.data.frame(proc_data)
 stargazer(proc_data, type="text")
 save(proc_data,file = "Input/data proc/proc_data.RData")
-
 
 ##Nivel educacional
 frq(proc_data$m01)
@@ -61,6 +52,10 @@ proc_data <- rename(proc_data,"educacion"=m01)
 get_label(proc_data$educacion)
 proc_data$educacion <- set_label(x = proc_data$educacion,label = "Educación")
 frq(proc_data$educacion)
+
+##Selección de muestra
+proc_data <- proc_data %>%
+  filter(educacion %in% c("Educación Superior"))
 
 ##NSE
 frq(proc_data$c33)
@@ -87,6 +82,18 @@ get_label(proc_data$sexo)
 proc_data$sexo <- set_label(x = proc_data$sexo,label = "Sexo")
 frq(proc_data$sexo)
 
+##Edad
+frq(proc_data$m0_edad)
+proc_data <- rename(proc_data,"edad"=m0_edad)
+get_label(proc_data$edad)
+proc_data$edad <- set_label(x = proc_data$edad,label = "Edad")
+frq(proc_data$edad)
+proc_data$educacion_superior <- ifelse(proc_data$edad >= 18 & proc_data$edad <= 35,
+                                       "Estudiantes Universitarios",
+                                       "No Universitarios")
+frq(proc_data$educacion_superior)
+
+
 ##Participación Política
 proc_data <- proc_data %>% rename("apoyo_causa"=c08_01,  
                                   "part_marcha"=c08_02, 
@@ -106,20 +113,18 @@ frq(proc_data$part_marcha)
 frq(proc_data$part_huelga)
 frq(proc_data$rrss_pol)
 
-proc_data$apoyo_causa <- factor(proc_data$apoyo_causa,
-                                levels = c(1, 2, 3, 4, 5),
-                                labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
-
-proc_data$part_marcha <- factor(proc_data$part_marcha,
-                                levels = c(1, 2, 3, 4, 5),
-                                labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
-proc_data$part_huelga <- factor(proc_data$part_huelga,
-                                levels = c(1, 2, 3, 4, 5),
-                                labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
-proc_data$rrss_pol <- factor(proc_data$rrss_pol,
-                                levels = c(1, 2, 3, 4, 5),
-                                labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
-
+proc_data$apoyo_causa <- ifelse(proc_data$apoyo_causa %in% c(1, 2), "Poco",
+                        ifelse(proc_data$apoyo_causa== 3, "Algo",
+                               ifelse(proc_data$apoyo_causa %in% c(4, 5), "Mucho", NA)))
+proc_data$part_marcha <- ifelse(proc_data$part_marcha %in% c(1, 2), "Poco",
+                                ifelse(proc_data$part_marcha== 3, "Algo",
+                                       ifelse(proc_data$part_marcha %in% c(4, 5), "Mucho", NA)))
+proc_data$part_huelga <- ifelse(proc_data$part_huelga %in% c(1, 2), "Poco",
+                                ifelse(proc_data$part_huelga== 3, "Algo",
+                                       ifelse(proc_data$part_huelga %in% c(4, 5), "Mucho", NA)))
+proc_data$rrss_pol <- ifelse(proc_data$rrss_pol %in% c(1, 2), "Poco",
+                                ifelse(proc_data$rrss_pol== 3, "Algo",
+                                       ifelse(proc_data$rrss_pol %in% c(4, 5), "Mucho", NA)))
 ##Membresías
 proc_data <- proc_data %>% rename("pert_pp"=c12_03)
 
@@ -128,9 +133,8 @@ get_label(proc_data$pert_pp)
 
 frq(proc_data$pert_pp)
 
-proc_data$pert_pp <- factor(proc_data$pert_pp,
-                             levels = c(1, 2, 3),
-                             labels = c("No", "Si", "Si"))
+proc_data$pert_pp <- ifelse(proc_data$pert_pp == 1, "No pertenece",
+                            ifelse(proc_data$pert_pp %in% c(2, 3), "Si pertenece", NA))
 
 
 ##Interés en la política
@@ -140,21 +144,26 @@ frq(proc_data$interes_pol)
 proc_data$interes_pol <- set_label(proc_data$interes_pol, label = "Interés Político")
 get_label(proc_data$interes_pol)
 
-proc_data$interes_pol <- factor(proc_data$interes_pol,
-                             levels = c(1, 2, 3, 4, 5),
-                             labels = c("Sin interés", "Poco interés", "Poco interés", "Alto interés", "Alto interés"))
+proc_data$interes_pol <- ifelse(proc_data$interes_pol==1 , "Sin interés",
+                             ifelse(proc_data$interes_pol %in% c(2, 3), "Poco interés",
+                                    ifelse(proc_data$interes_pol %in% c(4, 5), "Alto interés", NA)))
+
 
 ##Participación en Movimientos Sociales
 proc_data <- proc_data %>% rename("part_movsoc"=c22)
 proc_data$part_movsoc <- set_label(x = proc_data$part_movsoc,label = "Participación: Movimientos Sociales")
 get_label(proc_data$part_movsoc)
 
-proc_data$part_movsoc <- factor(proc_data$part_movsoc,
-                                levels = c(1, 2, 3, 4, 5),
-                                labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
+proc_data$part_movsoc <- ifelse(proc_data$part_movsoc %in% c(1, 2), "Poco",
+                             ifelse(proc_data$part_movsoc== 3, "Algo",
+                                    ifelse(proc_data$part_movsoc %in% c(4, 5), "Mucho", NA)))
+
 frq(proc_data$part_movsoc)
 
+
 #Descriptivos
+stargazer(proc_data,type = "text")
+
 sjmisc::descr(proc_data)
 sjmisc::descr(proc_data,
               show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
@@ -163,43 +172,25 @@ sjmisc::descr(proc_data,
 summarytools::dfSummary(proc_data, plain.ascii = FALSE)
 view(dfSummary(proc_data, headings=FALSE))
 
+proc_data <- mutate_all(proc_data, as.numeric)
 
-# Gráfico
-graph1 <- proc_data %>%
-  select(apoyo_causa, part_marcha, part_huelga, rrss_pol, part_movsoc) %>%
-  rename(
-    "Participación en Causa" = apoyo_causa,
-    "Participación en Marcha" = part_marcha,
-    "Participación en Huelga" = part_huelga,
-    "Participación en RRSS" = rrss_pol,
-    "Participación en Movimientos Sociales" = part_movsoc
-  ) %>%
-  sjPlot::plot_stackfrq() +
+##Gráficos
+graph1 <-proc_data %>% dplyr::select(apoyo_causa, part_marcha, part_huelga, part_movsoc, rrss_pol) %>% 
+  sjPlot::plot_stackfrq()+
   theme(legend.position = "bottom")
 
 graph1
 ggsave(graph1, file="Output/graph1.png")
 
 
-graph2 <- proc_data %>% ggplot(aes(x = interes_pol, fill = NSE)) + 
-  geom_bar() +
-  xlab("Interés Político") +
-  ylab("Cantidad") + 
-  labs(fill="NSE")+
-  scale_fill_discrete(labels = c('NSE Bajo', 'NSE Medio', 'NSE Alto'))
-
-graph2
-ggsave(graph2, file="Output/graph2.png")
-
 ##Asociación de Variables
-dim(proc_data)
+dim(proc_data) # Dimensiones
 
 sjmisc::descr(proc_data,
               show = c("label","range", "mean", "sd", "NA.prc", "n")) %>%
   kable(.,"markdown")
 
 ##Correlación
-proc_data <- mutate_all(proc_data, as.numeric)
 
 M <- cor(proc_data,
          use = "complete.obs")
@@ -210,35 +201,21 @@ sjPlot::tab_corr(proc_data,
 
 corrplot.mixed(M)
 
-
 M2 <- cor(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
-                        rrss_pol, pert_pp, part_movsoc), use = "complete.obs")
+                        rrss_pol, pert_pp, interes_pol, part_movsoc, NSE), use = "complete.obs")
 corrplot.mixed(M2)
 
+psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
+                        rrss_pol, pert_pp, interes_pol, part_movsoc, NSE))
 
 psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
-                           rrss_pol, part_movsoc, interes_pol, NSE, educacion))
+                           rrss_pol, pert_pp, part_movsoc))
 
+escala = proc_data %>% 
+  rowwise() %>%
+  mutate(participacion = mean(c(proc_data, apoyo_causa, part_marcha, part_huelga, 
+                                rrss_pol, pert_pp, part_movsoc)),
+         interes_politico = mean(c(interes_pol)),
+         nse= mean(c(NSE))) %>% 
+  ungroup()
 
-proc_data <- proc_data %>% 
-  rowwise() %>% 
-  mutate(participacion = sum(apoyo_causa, part_marcha, part_huelga, 
-                                      rrss_pol, part_movsoc))
-summary(proc_data$participacion)
-
-proc_data <- proc_data %>% 
-  rowwise() %>% 
-  mutate(interes_politico = sum(interes_pol))
-summary(proc_data$interes_politico)
-
-ggplot(proc_data, aes(x = participacion)) +
-  geom_histogram(binwidth=0.6, colour="black", fill="yellow") +
-  theme_bw() +
-  xlab("Participación Política") +
-  ylab("Cantidad")
-
-ggplot(proc_data, aes(x = interes_politico)) +
-  geom_histogram(binwidth=0.6, colour="black", fill="yellow") +
-  theme_bw() +
-  xlab("Interés Político") +
-  ylab("Cantidad")

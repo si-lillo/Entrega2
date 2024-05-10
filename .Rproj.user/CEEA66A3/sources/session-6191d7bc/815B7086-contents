@@ -1,0 +1,261 @@
+---
+title: "TrabajopracticoN2"
+author: "Damian Vicente Cespedes"
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+## "Confianza en la institucionalidad politica en la población joven de entre 18 a 30 años"
+
+#### Introducción
+
+Durante las últimas décadas, en latinoamérica se ha tendido a centrar el foco investigativo en torno a diferentes tipos de fenómenos sociales subyacentes. Esto se debe a que durante este último tiempo, el continente se ha caracterizado por la irrupción de diversas efervescencias en ámbitos sociales, políticos y económicos de gran magnitud. En esa línea, contextualmente, Chile representa un caso particular en donde, a partir del 18 de Octubre de 2019 se constituyó un punto de inflexión en la historia política y social del país. En aquella ocasión, los ciudadanos salieron a las calles de manera disgustada para exigir un sinnúmero de reformas sociales en materias como la salud, pensiones, educación, entre otras. Este suceso tomó forma clara a tal punto que llegó a convertirse en una suerte de llamada de atención para muchos sujetos del tapete político, quienes fueron interpelados críticamente debido a la mala interpretación por parte de ellos hacia las exigencias que demandaba la ciudadanía. Un descontento social que venía gestándose hacía varios años antes y que se exteriorizo mediante multitudinarias manifestaciones nunca antes vistas en aquel entonces.
+
+En ese sentido, una de las grandes dificultades que enfrentamos como comunidad latina hace referencia a un progresivo incremento de desconfianza a la hora de hablar de la relación que logran establecer los actores políticos, quienes están al mando de la sociedad, con los mismos ciudadanos [@marchantsalamanca2021]. En el caso Chileno, esto queda especialmente contrastado con hallazgos anteriores expuestos por @moralesquiroga2008, quien indaga en la relación entre la democracia y la confianza institucional, obteniendo como resultado una representación de insatisfacción y descontento por parte de la ciudadanía con algunos organismo del andamiaje democrático. Con el tiempo, se evidencia una clara reducción en la confianza institucional, que en ese entonces afectaba principalmente a organismos como el Gobierno, el Congreso y los partidos políticos [@moralesquiroga2020]. Es decir, gran parte de la institucionalidad política representativa de la sociedad.
+
+Para autores como @laso2010, la confianza institucional se asocia con la concepción de riesgo, entendiendo como puede uno generar (influir) y provocar cambios en los "niveles" subjetivos de confianza, ya sea disminuyéndolos o aumentándolos. El autor formula interesantes ideas al respecto, sugiriendo que el concepto en cuestión tendría dos niveles: las palabras y los actos. Según esta perspectiva, entonces la confianza se desarrolla cuando haya coincidencia entre ambas posturas, pero se perdería en cuanto exista discordancia en cuanto tal (2010). Bajo esta línea argumentativa, consideraremos que la confianza institucional es una dimensión que abarca la coincidencia en la coherencia que tengan los actos y palabras por parte de las instituciones políticas, así como de los actores involucrados que forman parte de aquel organismo social. Por tanto, lo anterior nos permite suponer que cuando haya una discrepancia entre lo dicho y lo hecho, ya sea por una mentira o un comportamiento inconsecuente, esto generará falta de credibilidad y, por consiguiente, la pérdida de confianza en las instituciones políticas mencionadas.
+
+Este mismo autor, [@laso2010], además propone que la confianza en una sociedad con óptima funcionalidad de las instituciones ayudaría a reducir la complejidad y el desorden existentes en algunos ámbitos. Esto nos permite adentrarnos en la idea de que una sociedad en la cual prime la idea de desconfianza esta será una sociedad marcada por el desorden y eventuales crisis económicas, políticas y sociales. Es de importancia mencionar que, a título de Laso, la confianza, restringida al ámbito humano (es decir a las relaciones entre personas, individuos o instituciones), no siempre será recíproca, ya que estas están determinadas por las conductas anteriores de estos. Esto quiere decir que en una sociedad donde cierta parte de los individuos que tienen cargos políticos desempeñan funciones en base a malas prácticas que quebrantan a la comunidad, precisamente allí, es sumamente importante que las políticas públicas que se promuevan giren en torno a la transparencia. Pues la importancia de la confianza institucional es fundamental para el funcionamiento de un régimen político y la estabilidad de una nación.
+
+Por su parte, autores como [@riffo2019] expresan que existe una factor importante en relación con una gran preponderancia de la variable que ya hemos mencionado con anterioridad, es decir, la confianza institucional, en concordancia con lo que vendría siendo el capital social. El autor principalmente refiere a que esta interrelación de conceptos son aspectos que deben de ser fundamentales para las organizaciones democráticas, pudiendo así lograr tener la factibilidad de mejorar el fortalecimiento en la eficacia de la representación política de las sociedades. Desde esta perspectiva, aquello quiere decir que se concibe a la confianza institucional como una especie de versificación de la cohesión social dentro de la colectividad.
+
+En esa línea, el contexto político Chileno ya mencionado deja a entrever un relativo aumento hacia la presentación de una situación sociopolítica compleja en cuanto a una relación de amplia distancia de desconfianza en una amplia distancia por parte de los ciudadanos, hacia gran parte de los sectores políticos, ya sea de diversa ubicación en el entorno ideológico izquierda/derecha, sea el Gobierno de turno, Partidos Políticos y Congreso Nacional. En cierta medida, esto nos lleva a plantear la hipótesis central que encamina este trabajo, la cual refiere a que actualmente estamos frente a la presencia de una crisis de corte institucional en la gubernamentalidad política del país, manifestada en una en cuanto a una aparente baja progresiva en los estándares de confianza por parte de la ciudadanía frente a estos organismos políticos. En concordancia con eso, la pregunta que guía este estudio es si las capacidades institucionales de los agentes políticos inciden en la confianza política que las personas depositan en ellos y, de existir tal influencia, cómo es dicha relación. Por tanto el argumento principal como ya ha sido sostenido con anterioridad refiere a que los actuales organismo políticos más importantes para la sociedad chilena (Gobierno, Partidos Políticos y Congresos) se encuentran en una crisis de desconfianza institucional por parte de la ciudadanía. Desde alli, intentaremos realizar un a segmentación por sexo, y además también interemos realiza un filtro por rangos etarios de la población más joven de adultos, que para efectos de este trabajo ronda entre los 18 a 30 años.
+
+Para efectros de la presenta investigacion, recurrimos a una base de datos correspondiente a obtenida a traves de un estudio longitudinal realizado por el COES en Chile entre los años 2016 y 2022. Fundamentalemnte, emplearemos los datos de ELSOC_2016_2022 con el fin de observar como se plasma la relación de confianza de la ciudadania para con los entes politicos que estan al mando de la sociedad.
+
+### Trabajo en R
+
+##### Ajustes iniciales
+
+```{r}
+rm(list=ls())       # borrar todos los objetos en el espacio de trabajo
+options(scipen=999) # valores sin notación científica
+```
+
+### Cargar paquetes
+
+Para la realización del presente estudio, emplearemos la utilización de Rstudio para poder visualizar y trabajar con los datos, en donde trabajaremos mediante un R script. Como primer paso debemos cargar una serie de paquetes que nos permitan analizar y utilizar lo que necesitamos para fines investigativos.
+
+```{r}
+pacman::p_load(sjlabelled,
+               dplyr, #Manipulacion de datos
+               stargazer, #Tablas
+               sjmisc, # Tablas
+               summarytools, # Tablas
+               kableExtra, #Tablas
+               sjPlot, #Tablas y gráficos
+               corrplot, # Correlaciones
+               sessioninfo, # Información de la sesión de trabajo
+               ggplot2) # Para la mayoría de los gráficos
+
+install.packages("haven")
+install.packages("table1")
+
+```
+
+```{r}
+library("haven")
+library("car")
+library("pacman")
+library("dplyr")
+library("table1")
+```
+
+### Cargar Base de datos
+
+Posteriormente, seleccionamos la base de datos que corresponde a los datos primarios obtenidos por "EL SOC" de la cual a partir de alli obtendremos nuestra información y variables, para posteriormente trabajar con estos datos, según corresponda el lineamiento investigativo del presente trabajo.
+
+```{r}
+ELSOC_2016_2022 <- read_sav("~/R-2024/Trabajo-2/Git hub/Input/ELSOC.2016.2022.sav")
+```
+
+### Procesamiento nueva BB.DD
+
+En este apartado, procesamos la base de datos específicamente, generando la obtención de una base de datos nueva, que corresponde a la utilización de las variables específicas que\
+se trabajarán en el presente estudio.
+
+```{r}
+proc_data <- ELSOC_2016_2022 %>% select(c05_01,#Confianza gob
+                                        c05_02,#Confianza Part Pol
+                                        c05_07,#Confianza Congreso N
+                                        c13,#Interes politica
+                                        c38,#Percepcion corrupcion pol
+                                        sexo_enc,#sexo
+                                        edad_enc)#edad
+```
+
+### Revisión de NA (casos perdidos)
+
+```{r}
+table(proc_data$c05_01, exclude = F) 
+table(proc_data$c05_02, exclude = F)
+table(proc_data$c05_07, exclude = F)
+table(proc_data$c13, exclude = F) 
+table(proc_data$c38, exclude = F)
+table(proc_data$sexo_enc, exclude = F)
+table(proc_data$edad_enc, exclude = F) 
+```
+
+### Filtrar según Rango etario
+
+Aquí fundamentalmente filtramos una nueva base de datos en relación a un filtro que corresponde a un rango etario específico de población como propuesta de analisis en el presente trabajo, y que corresponde a la población más joven que respondió la encuesta ELSCOC, y que consta de una edad que varía de entre los 18 a 30 años.
+
+```{r}
+proc_data_fil <- subset(proc_data, edad_enc >= 18 & edad_enc <= 30)
+```
+
+### Eliminar casos perdidos
+
+##### Para un analisis mejor acotado, planetemoas la elinminación de los casos perdidos de las variables con las que trabajaremos.
+
+```{r}
+proc_data_fil$c05_01 <- recode(proc_data_fil$c05_01, "c(-999,-888,-777,-666)=NA")
+proc_data_fil$c05_02 <- recode(proc_data_fil$c05_02, "c(-999,-888,-777,-666)=NA")
+proc_data_fil$c05_07 <- recode(proc_data_fil$c05_07, "c(-999,-888,-777,-666)=NA")
+proc_data_fil$c13 <- recode(proc_data_fil$c13, "c(-999,-888,-777,-666)=NA")
+proc_data_fil$c38 <- recode(proc_data_fil$c38, "c(-999,-888,-777,-666)=NA")
+proc_data_fil$sexo_enc <- recode(proc_data_fil$sexo_enc, "c(-2,-1)=NA")
+proc_data_fil$edad_enc <- recode(proc_data_fil$edad_enc, "c(-2,-1)=NA")
+```
+
+### Revision de eliminación NA
+
+```{r}
+frq(proc_data_fil$c05_01)
+frq(proc_data_fil$c05_02)
+frq(proc_data_fil$c05_07)
+frq(proc_data_fil$c13)
+frq(proc_data_fil$c38)
+frq(proc_data_fil$sexo_enc)
+frq(proc_data_fil$edad_enc)
+```
+
+### Visualizar nombres
+
+Para una mejor fundamentación, en el presente estudio se emplearán 7 variables del total de datos que brinda ELSOC. En donde las variables a trabajar constan de: Grado de confianza en el gobierno, Grado de confianza en Los Partidos Políticos, Grado de Confianza en El Congreso Nacional. Ambas tres variables forman parte de un analisis del grado de confianza con las 3 instituciones politicas mas importantes de la democracia Chilena representativa. Ademas, de igual manera se utilizara la variable que se relaciona conforme al interes que tienen las personas en la Politica en general, asi como tambien la percepción de estos mismos con la corrupción politica. En ese sentido tambien se empleara el tipo sexo de la persona y su respectiva edad del encuestado.
+
+Variables que nos serviran para lograr entender si realmente existe una alto indice de desconfianza en la institucionalidad politica, pudiendo analizar cual es el relacionamiento con el andamiaje politico entre personas en un rango etario mas joven, y segmentadas por sexo hombre/mujer.
+
+Primero, es importante visualizar los nombres de las variables para indagar en ellas.
+
+```{r}
+names(proc_data_fil)
+sjlabelled::get_label(proc_data_fil)
+
+```
+
+Modificamos los nombres de las variables para un mejor entendimiento y una mayor claridad lectiva de estas mismas variables empleadas.
+
+```{r}
+proc_data_fil <- proc_data_fil %>% rename("conf_gob"=c05_01, # Confianza gobierno
+                                          "conf_partpol"=c05_02, # Confianza partidos politicos
+                                          "conf_cong"=c05_07, # Confianza Congreso Nacional
+                                          "legt_pol"=c13, # Legitimación Politica
+                                          "percp_corrup"=c38) #Percepción Corrupción Politica
+
+```
+
+```{r}
+proc_data_fil$conf_gob <- set_label(x = proc_data_fil$conf_gob,label = "Confianza: Gobierno")
+get_label(proc_data_fil$conf_gob)
+proc_data_fil$conf_partpol <- set_label(x = proc_data_fil$conf_partpol,label = "Confianza: P.Politico")
+get_label(proc_data_fil$conf_partpol)
+proc_data_fil$conf_cong <- set_label(x = proc_data_fil$conf_cong,label = "Confianza: Congreso")
+get_label(proc_data_fil$conf_cong)
+proc_data_fil$legt_pol <- set_label(x = proc_data_fil$legt_pol,label = "Legitimación: Politica")
+get_label(proc_data_fil$legt_pol)
+proc_data_fil$percp_corrup <- set_label(x = proc_data_fil$percp_corrup,label = "Percepcion: Corrupcion")
+get_label(proc_data_fil$percp_corrup)
+```
+
+### Obtener datos descriptivos
+
+```{r}
+sjmisc::descr(proc_data_fil,
+              show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
+  kable(.,"markdown")
+
+proc_data_fil<-as.data.frame(proc_data_fil)
+stargazer(proc_data_fil, type="text")
+```
+
+En estas tablas, a simple vista podemos visualizar los casos que se encuentran en cada respectiva variable, en donde se adjunta en cada variable su respectivo valor, su nombre, la media, la desviación estándar, y el rango de respuesta que tuvo cada variable por sí sola. En mayor detalle no indagaremos ya que posteriomente adentrarnos en un analisis mas profundo. Sin embargo, a muy grandes rasgos se puede decir que la cantidad de observación es por cada variable, aproximadamente oscila entre 1204 y 1221, en donde la confianza en en los partidos políticos representa la media más baja de las 3 instituciones a analizar adquiriendo un valor de 1.457, mientras que es seguida por la confianza en el Congreso Nacional que tuvo un valor de 1.866. Por su parte la mayor confianza de estas instituciones la tiene el Gobierno, adscribiendo como promedio la categoría de respuesta Poca desconfianza. Ademas, la cateogria de legitimacion politica en relación al interes por esta, adquiere valores entorno a una categoria de poco interes en la politica.
+
+Fundamentalmente, otro valor importante a destacar hace referencia con la alta percepción de corrupción que existe entre los datos analizados, que apelan a la percepción de una alta corrupcion extendida en la politica, teniendo una media de 4.23 en una categoria de respuesta donde el valor mas alto es 5 (Muy extendida).
+
+En resumen, la tabla proporciona información sobre la confianza en diferentes aspectos del gobierno y la política, así como sobre la legitimación política y la percepción de la corrupción. Las medias y desviaciones estándar muestran cómo varían estas medidas entre la población estudiada, mientras que los intervalos de confianza indican la incertidumbre asociada con estas estimaciones.
+
+```{r}
+summarytools::dfSummary(proc_data_fil, plain.ascii = FALSE)
+```
+
+En esta tabla, a modo particular podemos indagar en una aproximación de lo que vendría siendo la distribución de cada variable. Aquí, ya podemos realizar un análisis en profundidad, en donde en primera instancia se observa que el grado de confianza en la institución de gobierno es bajísima, pero siendo la que relativamente genera más confianza en la población de estudio. Por su parte, la institucionalidad de los partidos políticos es sobre quien más recae el cuestionamiento sobre la desconfianza, obteniendo esta variable la peor evaluación. El congreso nacional, también tiene un bajo nivel de desconfianza, siendo un poco más baja la desconfianza que la institución de gobierno como tal. En cuanto al interés en la política, se deja a entrever a grandes rasgos que la población joven, prácticamente en más de un 50% no tiene mayor interés en esta perspectiva. Por último, en cuanto a la percepción de corrupción política que presenta el rango etario de 18 a 30 años, nos expresa que la mayor parte de esta población siente que la corrupción política se encuentra entre algo extendida y muy extendida en nuestro país.
+
+### Tablas de contigencia
+
+```{r}
+sjt.xtab(proc_data_fil$legt_pol, proc_data_fil$sexo_enc)
+```
+
+En esta tabla podemos ejemplificar la legitimacion politica en relación a una clara distinción entre sexos, en donde se deja a entrever que son en mayor medida la categoría de nada interesado en la política se retrae a la mayor cantidad de respuestas estipuladas, en donde también se deja a entrever una mayor cantidad de mujeres quienes respondieron la encuesta del total de la población encuestada. En ese sentido la mayor cantidad de respuestas en ambos sexos se concentra en la categoría ya mencionada, afirmando que aprox. mas del 50% de los encuestados afirma no estar nada interesado en política.
+
+```{r}
+sjt.xtab(proc_data_fil$percp_corrup, proc_data_fil$sexo_enc)
+```
+
+De igual manera, en relacion a la tabla de contingencia sobre la precepcion de corrupción se observa que gran cantidad de la poblacion total encuestada (ya sea hombre o mujer) afirma que la corrupción politica se encuentra bastante o muy extendida en nuestro pais, siendo un claro indice de una falta de seriedad y profesinalismo en materia politica debido al actuar de estos sujetos gubernamentales.
+
+### Tablas con porcentajes
+
+Para mas detalles adjuntamos la realizacion de las mismas tables anteriormente estipulados, pero con la expecion de un analisis en porcentajes para un estudio mas detallado.
+
+```{r}
+sjt.xtab(proc_data_fil$percp_corrup, proc_data_fil$edad_enc,
+         show.col.prc=TRUE,
+         show.summary=FALSE,
+         encoding = "UTF-8")
+```
+
+Aqui, en esta tabla con porcentajes observamos que entre las personas de 18 a 30 años, tan solo el 2,1%, es decir, 25 personas, comsiderar que la percepción de corrupcion politica se encuentra para Nada extendida en nuestro pais, de un total de 1203 encuestados. Por el contrario, de esos 1203 personas jovenes de entre 18 a 30 años, un ttoal de 559, es decir, cerca de la mitad de los encuestados (46,5%) afirma expresamente que la corrupción politica se encuentra muy extendida.
+
+```{r}
+sjt.xtab(proc_data_fil$legt_pol, proc_data_fil$sexo_enc,
+         show.col.prc=TRUE,
+         show.summary=FALSE,
+         encoding = "UTF-8")
+```
+
+En relacion a esta tabla se identifica que en promedio es casi el mismo porcentaje de hombres y mujeres que no se encuentran para nada interesadoas en la politica institucional de nuestro pais. Ademas, tambien se del total de encuestados, entre hombres y mujeres,, un 4,2% expresa que se encuentra muy interesado en la politica. Se expresa que no hay diferencias claramente significativas entre ambos generos en relacion a la variable de legitimación politica. De igual manera es importante recalcar que las diferencias en relacio a la cantidad de encuestados, dice relacion con una mayor poblacion femenina en la muestra analisasa en la base de datos de este estudio.
+
+### Graficos
+
+```{r}
+proc_data_fil %>% ggplot(aes(x = legt_pol)) + 
+  geom_bar(fill = "coral")+
+  labs(title = "Grado de percepción de legitimación politica",
+       x = "Percepción de Legitimación Politica",
+       y = "Frecuencia")
+```
+
+Con base en los datos proporcionados, es evidente que existe una baja percepción de legitimación política en Chile. Esto se refleja en los niveles de interés político de la población, donde la mayoría de los encuestados se encuentran en las categorías de "Nada interesado" y "Poco interesado", representando el 45% y el 24% respectivamente. El nivel de interés político aumenta gradualmente a medida que avanzamos hacia las categorías de "Algo interesado", "Bastante interesado" y "Muy interesado", con porcentajes significativamente menores en comparación con los niveles de desinterés. Esto sugiere que una parte sustancial de la población chilena no se siente involucrada o comprometida con la política, lo que puede tener implicaciones negativas para la legitimidad y la estabilidad del sistema político.
+
+Esta baja percepción de legitimación política puede estar relacionada con una serie de factores, como la falta de representatividad de las instituciones políticas, la corrupción, la desigualdad socioeconómica o la percepción de que las acciones del gobierno no satisfacen las necesidades y demandas de la población.
+
+```{r}
+proc_data_fil %>% ggplot(aes(x = percp_corrup)) + 
+  geom_bar(fill = "coral")+
+  labs(title = "Grado de percepción de corrupción  politica",
+       x = "Percepción de corrupción Politica",
+       y = "Frecuencia")
+```
+
+En relacion a los datos obtenidos se observa una alta percepción de corrupción política en Chile en la pobalcion joven que ronda los 18 a 30 años. La mayoría de los encuestados perciben la corrupción como un problema significativo y que pareciera esta al latir de la sociedad chilena, en donde en un aproximado, mas de un 70% de esta poblacion de estudio indica que la corrupción en nuestro pais se encuentra entre "Bastante extendida" y "Muy extendida". Afirmando de esta manera lo que en un principio se tenia como hipotesis de trabajo, que era que la poblacion joven, vale decir, la poblacion objetivo de este estudio, expresan altos estandares de malversación en el actuar politico, ya sea por diversos motivos.
+
+En generla, se puede afirmar que la indagacion en estos datos sugieren que la corrupción política es un tema de gran preocupación para la población chilena joven, lo que puede tener consecuencias negativas para la confianza en las instituciones gubernamentales y para la legitimidad del sistema político de la democracia chilena en su conjunto.
+
+### Conclusiones finales
+
+A grandes rasgos, se puede decir que la desconfianza en la institucionalidad política chilena, que incluye el Congreso, el gobierno y los partidos políticos, es un fenómeno complejo que refleja una serie de problemas arraigados en la sociedad. La literatura reciente, asi como el trabajo realizado en el presente estudio, en parte afirma que se puede concluir que esta desconfianza surge de una combinación de factores, que van desde la percepción de corrupción y falta de transparencia hasta la desconexión entre los líderes políticos y las necesidades reales de la ciudadanía.
+
+En donde las instituciones políticas en Chile enfrentan desafíos significativos en términos de legitimidad y representatividad. La falta de responsabilidad, la opacidad en la toma de decisiones y los escándalos de corrupción han erosionado la confianza de la población en sus líderes y en las instituciones que los respaldan. Por ultimo, se hace relevante recalcar que la brecha entre las élites políticas y la ciudadanía común se ha ampliado, lo que ha generado un sentimiento de alienación y desapego hacia el sistema político generando una falta de interes. Y en donde en particular, los partidos politicos son percibidos como entidades distantes y desconectadas de las preocupaciones cotidianas de la gente, lo que ha contribuido a una creciente apatía y desinterés por la participación política.

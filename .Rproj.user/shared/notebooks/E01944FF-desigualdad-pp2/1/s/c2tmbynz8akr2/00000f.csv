@@ -1,2 +1,0 @@
-"0","proc_data <- proc_data %>% set_na(., na = c(-999, -888))"
-"0","proc_data <- na.omit(proc_data)"
