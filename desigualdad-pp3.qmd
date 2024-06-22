@@ -7,13 +7,13 @@ bibliography: desigualdad-pp.bib
 link-citations: true 
 ---
 
-# "Tendencias de Desigualdad y Participación Política: Estudiantes Universitarios en Chile"
+# "Desigualdad y Participación Política en Chile"
 
 En el Chile actual, la desigualdad social y la estratificación económica han emergido como temas de alta relevancia sociológica, planteando desafíos significativos para la cohesión social y la justicia distributiva en las sociedades contemporáneas. La percepción de la desigualdad juega un papel crucial en la configuración de actitudes y comportamientos sociales y políticos de los individuos, y su impacto se refleja de manera notable en la participación política de la población.
 
-La educación cívica y la política educativa se presentan como herramientas fundamentales para abordar esta problemática, ya que contribuyen a la formación de ciudadanos informados y comprometidos con el bienestar colectivo. En este contexto, comprender la relación entre la percepción de la desigualdad, la educación cívica y la participación política de estudiantes universitarios adquiere una relevancia particular, ya que estos jóvenes representan una parte importante de la población activa en la esfera política.
+La educación cívica y la política educativa se presentan como herramientas fundamentales para abordar esta problemática, ya que contribuyen a la formación de ciudadanos informados y comprometidos con el bienestar colectivo.
 
-En este estudio, se propone analizar cómo la percepción de la desigualdad social influye en la participación política de los estudiantes universitarios en Chile. Diversas investigaciones indican que la participación política está estrechamente relacionada con el estatus socioeconómico, siendo aquellos con un nivel socioeconómico más alto más propensos a involucrarse en el sistema político.[@castilloSocialInequalityChanges2014] La desigualdad social en Chile ha sido un tema recurrente que ha generado tensiones y debates en la sociedad, contribuyendo a la fragmentación social y a la percepción de injusticia entre diferentes estratos de la población. Esta disparidad socioeconómica no solo ha impactado en la calidad de vida de los ciudadanos, sino también en su participación política y en la legitimidad de las instituciones democráticas.
+En este estudio, se propone analizar cómo la percepción de la desigualdad social influye en la participación política de los ciudadanos en Chile. Diversas investigaciones indican que la participación política está estrechamente relacionada con el estatus socioeconómico, siendo aquellos con un nivel socioeconómico más alto más propensos a involucrarse en el sistema político.[@castilloSocialInequalityChanges2014] La desigualdad social en Chile ha sido un tema recurrente que ha generado tensiones y debates en la sociedad, contribuyendo a la fragmentación social y a la percepción de injusticia entre diferentes estratos de la población. Esta disparidad socioeconómica no solo ha impactado en la calidad de vida de los ciudadanos, sino también en su participación política y en la legitimidad de las instituciones democráticas.
 
 Además, en la literatura existe una creciente preocupación por las menores tasas de participación electoral entre las cohortes de edad más joven. Por ejemplo, un estudio [@marchoogheVotersCandidatesFuture2013] investigó la disposición a votar entre adolescentes de 14 años de 22 países europeos y encontró que, si bien la disposición a votar sigue siendo elevada en este grupo de edad, existe una clara división de género. Las niñas son más propensas a afirmar que votarán, mientras que los niños se ven más a sí mismos como futuros candidatos electorales. Un clima de aula abierta en la escuela contribuye a la voluntad de votar en futuras elecciones. Sin embargo, elementos que impactan en la participación de adultos no tienen un efecto significativo en la intención de votar entre adolescentes, lo que sugiere que la menor tasa de participación observada entre los más jóvenes no puede atribuirse simplemente a una falta de motivación política, sino que deben considerarse otros elementos para explicar esta tendencia a la baja.
 
@@ -21,9 +21,9 @@ Además, en la literatura existe una creciente preocupación por las menores tas
 
 Ligado a lo anterior, las influencias positivas de condiciones socioeconómicas más favorables representan un aumento del 36% en los puntajes de las pruebas escolares. Estos hallazgos sugieren que en el sistema educativo chileno, caracterizado por su segregación socioeconómica, estos efectos podrían contribuir a ampliar la brecha en el rendimiento académico en el ámbito de la educación cívica entre los estudiantes de escuelas con mayores recursos y aquellos con menos recursos. Además, este estudio revela que, en promedio, los estudiantes con un estatus socioeconómico más elevado son más susceptibles a estas influencias, y que los efectos de la composición socioeconómica son más pronunciados en el sector privado subvencionado que en el sector público. [@diegocolladoEffectsClassroomSocioeconomic2015]
 
-En ese sentido, la hipótesis central que orientará esta investigación es que a medida que aumenta el nivel de percepción de la desigualdad social entre los estudiantes universitarios, también aumenta su participación política. Se espera que la percepción de la desigualdad social actúe como un predictor principal de la participación política de estos jóvenes, motivándolos a comprometerse activamente en la esfera política para abogar por cambios sociales y económicos.
+En ese sentido, la hipótesis central que orientará esta investigación es que a medida que aumenta el nivel de percepción de la desigualdad social, también aumenta su participación política. Se espera que la percepción de la desigualdad social actúe como un predictor principal de la participación política de los chilenos, motivándolos a comprometerse activamente en la esfera política para abogar por cambios sociales y económicos.
 
-Para efectos de este trabajo, utilizaré datos obtenidos a través del Estudio Longuitudinal de Chile (ELSOC_ola2016), con el fin de observar como se comporta la participación política de los universitarios en Chile. Para ello, se considerarán aquellas personas que cursen una institución de educación superior, en un rango etario de 18 a 35 años.
+Para efectos de este trabajo, utilizaré datos obtenidos a través del Estudio Longuitudinal de Chile (ELSOC_ola2016), con el fin de observar como se comporta la participación política en Chile.
 
 # Trabajo en R
 
@@ -39,16 +39,21 @@ options(scipen=999)
 
 ```{r}
 pacman::p_load(sjlabelled,
-               dplyr, #Manipulacion de datos
-               stargazer, #Tablas
+               dplyr, # Manipulacion de datos
+               stargazer, # Tablas
                sjmisc, # Tablas
                summarytools, # Tablas
-               kableExtra, #Tablas
-               sjPlot, #Tablas y gráficos
+               kableExtra, # Tablas
+               sjPlot, # Tablas y gráficos
                corrplot, # Correlaciones
                sessioninfo, # Información de la sesión de trabajo
-               ggplot2,# Para la mayoría de los gráficos
-               GGally)
+               ggplot2, # Para la mayoría de los gráficos
+               GGally,
+               car,
+               texreg,
+               sjlabelled, 
+               fastDummies, 
+               ggeffects)
 ```
 
 ## Cargar Base de Datos
@@ -58,7 +63,6 @@ load("Input/data original/ELSOC_W01_v4.01_R.RData")
 View(elsoc_2016)
 names(elsoc_2016)
 dim(elsoc_2016)
-
 ```
 
 ## Selección de Variables
@@ -70,8 +74,11 @@ proc_data <- elsoc_2016 %>% select(m0_sexo,
                                    c08_01:c08_04,
                                    c12_03,
                                    c13,
+                                   c15,
                                    c22,
-                                   c33)
+                                   c33,
+                                   c18_11)
+
 names(proc_data)
 sjlabelled::get_label(proc_data)
 ```
@@ -82,34 +89,25 @@ sjlabelled::get_label(proc_data)
 proc_data <- proc_data %>% set_na(., na = c(-999, -888))
 proc_data <- na.omit(proc_data)
 
-##Edad
-frq(proc_data$m0_edad)
-proc_data <- rename(proc_data,"edad"=m0_edad)
-get_label(proc_data$edad)
-proc_data$edad <- set_label(x = proc_data$edad,label = "Edad")
-frq(proc_data$edad)
-proc_data <- subset(proc_data, edad >= 18 & edad <= 35)
+proc_data <- as.data.frame(proc_data)
+stargazer(proc_data, type = "text")
+save(proc_data, file = "Input/data proc/proc_data.RData")
 
-proc_data <-as.data.frame(proc_data)
-stargazer(proc_data, type="text")
-save(proc_data,file = "Input/data proc/proc_data.RData")
-
-
-##Nivel educacional
+## Nivel educacional
 frq(proc_data$m01)
-proc_data$m01 <- car::recode(proc_data$m01, "c(1,2,3,4,5)=1; c(6,7,8,9,10)=2")
-proc_data$m01 <- factor(proc_data$m01,
-                             labels = c("Otro", "Educación Superior"),
-                             levels = c(1, 2))
-
-proc_data <- rename(proc_data,"educacion"=m01)
+proc_data <- rename(proc_data, "educacion" = m01)
 get_label(proc_data$educacion)
-proc_data$educacion <- set_label(x = proc_data$educacion,label = "Educación")
+proc_data$educacion <- set_label(x = proc_data$educacion, label = "Educación")
 frq(proc_data$educacion)
+proc_data$educacion <- car::recode(proc_data$educacion, "c(1,2)=0; c(3,4)=1; c(5,6,8)=2; c(7,9,10)=3")
+proc_data$educacion <- factor(proc_data$educacion,
+                              labels = c("Sin Estudios", "Básica", "Media", "Superior"),
+                              levels = c(0, 1, 2, 3))
 
-##NSE
+## NSE
 frq(proc_data$c33)
-proc_data <- proc_data %>% rename("NSE"=c33)
+proc_data <- proc_data %>% rename("NSE" = c33)
+frq(proc_data$NSE)
 
 proc_data$NSE <- set_label(proc_data$NSE, label = "Nivel Socioeconómico")
 get_label(proc_data$NSE)
@@ -117,27 +115,33 @@ proc_data$NSE <- ifelse(proc_data$NSE %in% c(1, 2), "NSE Bajo",
                         ifelse(proc_data$NSE %in% c(3, 4), "NSE Medio",
                                ifelse(proc_data$NSE == 5, "NSE Alto", NA)))
 
-proc_data$NSE<- factor(proc_data$NSE, levels = c("NSE Bajo", "NSE Medio", "NSE Alto"))
+proc_data$NSE <- factor(proc_data$NSE, levels = c("NSE Bajo", "NSE Medio", "NSE Alto"))
 frq(proc_data$NSE)
 
-##Sexo
+## Sexo
 frq(proc_data$m0_sexo)
 proc_data$m0_sexo <- car::recode(proc_data$m0_sexo, "1=0;2=1")
 proc_data$m0_sexo <- factor(proc_data$m0_sexo,
-                         labels=c( "Hombre",
-                                   "Mujer"),
-                         levels=c(0,1))
-proc_data <- rename(proc_data,"sexo"=m0_sexo)
+                            labels = c("Hombre", "Mujer"),
+                            levels = c(0, 1))
+proc_data <- rename(proc_data, "sexo" = m0_sexo)
 get_label(proc_data$sexo)
-proc_data$sexo <- set_label(x = proc_data$sexo,label = "Sexo")
+proc_data$sexo <- set_label(x = proc_data$sexo, label = "Sexo")
 frq(proc_data$sexo)
 
-##Participación Política
-proc_data <- proc_data %>% rename("apoyo_causa"=c08_01,  
-                                  "part_marcha"=c08_02, 
-                                  "part_huelga"=c08_03, 
-                                  "rrss_pol"=c08_04)
-proc_data$apoyo_causa <- set_label(x = proc_data$apoyo_causa,label = "Participación: Apoya Causa")
+## Edad
+frq(proc_data$m0_edad)
+proc_data <- rename(proc_data, "edad" = m0_edad)
+get_label(proc_data$edad)
+proc_data$edad <- set_label(x = proc_data$edad, label = "Edad")
+frq(proc_data$edad)
+
+## Participación Política
+proc_data <- proc_data %>% rename("apoyo_causa" = c08_01,
+                                  "part_marcha" = c08_02,
+                                  "part_huelga" = c08_03,
+                                  "rrss_pol" = c08_04)
+proc_data$apoyo_causa <- set_label(x = proc_data$apoyo_causa, label = "Participación: Apoya Causa")
 get_label(proc_data$apoyo_causa)
 proc_data$part_marcha <- set_label(x = proc_data$part_marcha, label = "Participación: Marcha")
 get_label(proc_data$part_marcha)
@@ -162,11 +166,11 @@ proc_data$part_huelga <- factor(proc_data$part_huelga,
                                 levels = c(1, 2, 3, 4, 5),
                                 labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
 proc_data$rrss_pol <- factor(proc_data$rrss_pol,
-                                levels = c(1, 2, 3, 4, 5),
-                                labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
+                             levels = c(1, 2, 3, 4, 5),
+                             labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
 
-##Membresías
-proc_data <- proc_data %>% rename("pert_pp"=c12_03)
+## Membresías
+proc_data <- proc_data %>% rename("pert_pp" = c12_03)
 
 proc_data$pert_pp <- set_label(proc_data$pert_pp, label = "Pertenece: Partido Político")
 get_label(proc_data$pert_pp)
@@ -174,45 +178,64 @@ get_label(proc_data$pert_pp)
 frq(proc_data$pert_pp)
 
 proc_data$pert_pp <- factor(proc_data$pert_pp,
-                             levels = c(1, 2, 3),
-                             labels = c("No", "Si", "Si"))
+                            levels = c(1, 2, 3),
+                            labels = c("No", "Si", "Si"))
 
-
-##Interés en la política
-proc_data <- proc_data %>% rename("interes_pol"=c13)
+## Interés en la política
+proc_data <- proc_data %>% rename("interes_pol" = c13)
 frq(proc_data$interes_pol)
 
 proc_data$interes_pol <- set_label(proc_data$interes_pol, label = "Interés Político")
 get_label(proc_data$interes_pol)
 
 proc_data$interes_pol <- factor(proc_data$interes_pol,
-                             levels = c(1, 2, 3, 4, 5),
-                             labels = c("Sin interés", "Poco interés", "Poco interés", "Alto interés", "Alto interés"))
+                                levels = c(1, 2, 3, 4, 5),
+                                labels = c("Sin interés", "Poco interés", "Poco interés", "Alto interés", "Alto interés"))
 
-##Participación en Movimientos Sociales
-proc_data <- proc_data %>% rename("part_movsoc"=c22)
-proc_data$part_movsoc <- set_label(x = proc_data$part_movsoc,label = "Participación: Movimientos Sociales")
+## Participación en Movimientos Sociales
+proc_data <- proc_data %>% rename("part_movsoc" = c22)
+proc_data$part_movsoc <- set_label(x = proc_data$part_movsoc, label = "Participación: Movimientos Sociales")
 get_label(proc_data$part_movsoc)
-
 proc_data$part_movsoc <- factor(proc_data$part_movsoc,
                                 levels = c(1, 2, 3, 4, 5),
                                 labels = c("Poco", "Poco", "Algo", "Mucha", "Mucha"))
 frq(proc_data$part_movsoc)
+
+## Autoubicación Política
+proc_data <- proc_data %>% rename("autoubicpol" = c15)
+proc_data$autoubicpol <- set_label(x = proc_data$autoubicpol, label = "Autoubicación Política")
+proc_data$autoubicpol <- car::recode(proc_data$autoubicpol, "c(0,1,2,3,4)=1; c(5)=2; c(6,8,9,10,11)=3")
+proc_data$autoubicpol <- factor(proc_data$autoubicpol,
+                              labels = c("Izquierda", "Centro", "Derecha"),
+                              levels = c(1, 2, 3))
+proc_data <- proc_data %>% filter(!is.na(autoubicpol))
+frq(proc_data$autoubicpol)
+
+## Desigualdad de ingreso
+proc_data <- proc_data %>% rename("percep_desigualdad" = c18_11)
+proc_data$percep_desigualdad <- set_label(x = proc_data$percep_desigualdad, label = "Percepción Desigualdad")
+proc_data$percep_desigualdad <- car::recode(proc_data$percep_desigualdad, "1:2=1; 3=2; 4:5=3")
+proc_data$percep_desigualdad <- factor(proc_data$percep_desigualdad,
+                                       levels = c(1, 2, 3),
+                                       labels = c("No percibe desigualdad", "Indeciso", "Percibe desigualdad"))
+frq(proc_data$percep_desigualdad)
 ```
 
 ## Descriptivos
 
 ```{r}
+stargazer(proc_data, type = "text")
+
 sjmisc::descr(proc_data)
 sjmisc::descr(proc_data,
-              show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
+              show = c("label","range", "mean", "sd", "NA.prc", "n")) %>%
   kable(.,"markdown")
 
 summarytools::dfSummary(proc_data, plain.ascii = FALSE)
-view(dfSummary(proc_data, headings=FALSE))
+view(dfSummary(proc_data, headings = FALSE))
 ```
 
-Como se observa en la tabla, la muestra final está compuesta en un 45,7% por hombres y un 54,3% de mujeres. El promedio de edad es de 28 años, con una desviación estándar de 4,9 años. Se puede observar que un 59,8% de los encuestados han cursado estudios superiores, versus un 40,2% que no. En el resto de variables que abarcan participación política, la mayoría de los estudiantes reportan poco apoyo a causas (67.7%), poca participación en marchas (79,35%), poca participación en huelgas (88,5%), y poco uso de redes sociales para fines políticos (51,4%). Respecto a la pertenencia, la mayoría de los estudiantes no son miembros de partidos políticos (94.9%). Alrededor del 47,4% de los estudiantes reportan poco interés político, mientras que el 40,4% reporta algo de interés y el 12,2% reporta alto interés. La mayoría de los estudiantes reportan una participación baja en movimientos sociales (71,1%). Finalmente, la mayoría de los estudiantes tienen un nivel socioeconómico bajo (52,0%), seguido por un 47,5% con nivel socioeconómico medio y solo un pequeño porcentaje (0,5%) con nivel socioeconómico alto.
+Como se observa en la tabla, la muestra final está compuesta en un 42,5% por hombres y un 57,5% de mujeres. La edad varía entre los 18 y 78 años,. El promedio de edad es de 45 años, con una desviación estándar de 15,5 años., lo que indica una dispersión considerable. Se puede observar que un 32,3% de los encuestados han cursado estudios superiores, un 59,6% han cursado estudios de básica y/o media, y sólo un 8,1% no cuenta con estudios. En el resto de variables que abarcan participación política, la mayoría de los encuestados reportan poco apoyo a causas (70,7%), poca participación en marchas (83%), poca participación en huelgas (89,2%), y poco uso de redes sociales para fines políticos (67,9%). Respecto a la pertenencia, la mayoría de los encuestados no son miembros de partidos políticos (92.9%). Alrededor del 35,2% de los encuestados reportan poco interés político, mientras que el 49,1% se reporta sin interés y sólo el 15,7% reporta alto interés. La mayoría reportan una participación baja en movimientos sociales (76%). En cuanto a la ubicación política, la mayoría se autopercibe como centro (36,3%), seguido de izquierda con un 35,3% y derecha con un 28,4%. La mayoría de los encuestados tienen un nivel socioeconómico bajo (52,4%), seguido por un 46,5% con nivel socioeconómico medio y solo un pequeño porcentaje (1,1%) con nivel socioeconómico alto. Finalmente, la percepción de desigualdad de los encuestados es alta, pues el 89,2% de la muestra cree que en Chile existe una desigualdad de ingresos.
 
 ## Gráficos
 
@@ -231,7 +254,7 @@ graph1 <- proc_data %>%
     "Participación en Movimientos Sociales" = part_movsoc
   ) %>%
   sjPlot::plot_stackfrq() +
-  theme(legend.position = "bottom")+
+  theme(legend.position = "bottom") +
   labs(
     title = "Participación en diferentes actividades sociales",
     x = "Actividades",
@@ -241,32 +264,31 @@ graph1 <- proc_data %>%
 graph1
 ```
 
-Luego de haber aplicado un filtro de rango etario, que sólo nos deja a aquellas personas que tienen entre 18 y 35 años, podemos observar como se manifiesta la participación política de los encuestados. A simple vista, podemos ver que en su mayoría, la participación política es baja, siendo más baja aquella que necesita algún grado de presencialidad. En el caso de la participación por redes sociales, nos encontramos con los valores más altos respecto a que participan algo o mucho en ellas.
+El gráfico ilustra la frecuencia de participación en diferentes actividades sociales en una muestra de 1181 individuos. Los resultados muestran que la mayoría de los individuos reportan una baja participación en todas las actividades. Específicamente, un 75.9% reporta poca participación en movimientos sociales, 67.9% en RRSS, 89.2% en huelgas, 83.0% en marchas y 70.7% en causas. En el caso de la participación por redes sociales, nos encontramos con los valores más altos respecto a que participan algo o mucho en ellas. La participación moderada ("Algo") y alta ("Mucha") en RRSS (32.1% combinados) y en causas (29.3% combinados), sugiere que estas áreas pueden ser puntos clave para aumentar el compromiso social.
 
 ```{r}
 #| label: tbl-ggplot
 
 #| tbl-cap: “Gráfico 2”
-
-graph2 <- proc_data %>% ggplot(aes(x = interes_pol, fill = NSE)) + 
+graph2 <- proc_data %>%
+  ggplot(aes(x = interes_pol, fill = percep_desigualdad)) +
   geom_bar() +
   xlab("Interés Político") +
-  ylab("Cantidad") + 
-  labs(fill="NSE")+
-  scale_fill_discrete(labels = c('NSE Bajo', 'NSE Medio', 'NSE Alto')) +
-  labs(title = "Relación entre Interés Político y NSE")
-
+  ylab("Cantidad") +
+  labs(fill = "Percepción Desigualdad") +
+  scale_fill_discrete(labels = c('No percibe desigualdad', 'Indeciso', 'Percibe desigualdad')) +
+  labs(title = "Relación entre Interés Político y Desigualdad")
 
 graph2
 ```
 
-En este gráfico, podemos observar como se relacionan el Interés Político y el Nivel Socioeconómico de los estudiantes universitarios. En general, se observa un alto desinterés sin importar el NSE de cada estudiante. Quienes presentan un mayor interés político, son aquellos estudiantes que tienen un NSE Medio.
+Este gráfico examina la relación entre el interés político y la percepción de desigualdad. La distribución muestra que la mayoría de los individuos con "Sin interés" político perciben desigualdad (representado en azul), seguido de un grupo menor que no percibe desigualdad (rojo) y un grupo aún menor de indecisos (verde). Entre aquellos con "Poco interés" político, se mantiene una tendencia similar, aunque con una ligera reducción en los números. Los individuos con "Alto interés" político son significativamente menos, pero la mayoría en esta categoría también perciben desigualdad. Este patrón indica que la percepción de desigualdad podría estar correlacionada con el nivel de interés político, sugiriendo que quienes perciben desigualdad tienden a tener mayor interés en la política.
 
-El estudio sobre las tendencias de desigualdad y participación política entre estudiantes universitarios en Chile destaca la compleja interacción entre factores sociales, económicos y educativos en la configuración de actitudes políticas y comportamientos cívicos. La desigualdad social y económica en Chile no solo afecta la calidad de vida de los ciudadanos, sino que también influye en su participación política y en la percepción de las instituciones democráticas.
+El estudio sobre las tendencias de desigualdad y participación política en Chile destaca la compleja interacción entre factores sociales, económicos y educativos en la configuración de actitudes políticas y comportamientos cívicos. La desigualdad social y económica en Chile no solo afecta la calidad de vida de los ciudadanos, sino que también influye en su participación política y en la percepción de las instituciones democráticas.
 
-La educación cívica emerge como una herramienta esencial para abordar estas desigualdades y fomentar la participación ciudadana informada. Sin embargo, el estudio sugiere que el nivel socioeconómico también desempeña un papel significativo en el grado de interés político de los estudiantes, lo que subraya la importancia de considerar el contexto socioeconómico al analizar la participación política de los jóvenes.
+La educación cívica emerge como una herramienta esencial para abordar estas desigualdades y fomentar la participación ciudadana informada. Sin embargo, el estudio sugiere que el nivel socioeconómico también desempeña un papel significativo en el grado de interés político , lo que subraya la importancia de considerar el contexto socioeconómico al analizar la participación política.
 
-La hipótesis planteada en el estudio, que sugiere que una mayor percepción de la desigualdad social entre los estudiantes universitarios se relaciona con una mayor participación política, abre nuevas vías de investigación sobre cómo los jóvenes responden a las disparidades socioeconómicas y buscan influir en el cambio social y económico a través de la acción política.
+La hipótesis planteada en el estudio, que sugiere que una mayor percepción de la desigualdad social se relaciona con una mayor participación política, abre nuevas vías de investigación sobre cómo los chilenos responden a las disparidades socioeconómicas y buscan influir en el cambio social y económico a través de la acción política.
 
 ## Asociación de Variables
 
@@ -274,7 +296,7 @@ La hipótesis planteada en el estudio, que sugiere que una mayor percepción de 
 dim(proc_data)
 
 sjmisc::descr(proc_data,
-              show = c("label","range", "mean", "sd", "NA.prc", "n")) %>%
+              show = c("label", "range", "mean", "sd", "NA.prc", "n")) %>%
   kable(.,"markdown")
 ```
 
@@ -293,49 +315,125 @@ sjPlot::tab_corr(proc_data,
 corrplot.mixed(M)
 ```
 
-Como se puede observar, existe una correlación negativa débil entre la edad y la educación, lo que sugiere que las personas más jóvenes, tienen a tener niveles educativos un poco más altos que quieres son más adultos. En el caso del interés político y el NSE, podemos observar una correlación positiva moderada, lo cual nos indica que las personas con un NSE más alto tienen a tener un mayor interés en la política que quienes tienen NSE bajo. Respecto al apoyo a causas políticas y la participación en marchas y huelgas, existen correlaciones positivas moderadas, lo que nos sugiere que las personas que participan en una causa específica también tienen a participar en huelgas o marchas relacionas a esa causa. También se observan correlaciones positivas moderadas entre la participación en redes sociales y la participación en marchas y huelgas. Esto indica que las personas que participan activamente en redes sociales también tienden a participar en actividades de protesta física. Respecto a la edad y la participación en marchas y huelgas, existe una correlación negativa débil, lo que nos indica que son las personas más jóvenes quienes tienden a participar más en las actividades presenciales.
-
-## Alfa de Cronbach 
+Como se puede observar, la matriz de correlación muestra las relaciones entre diversas variables socioeconómicas y de participación política. Se observa que la participación en distintas actividades políticas (causa, marcha, huelga, RRSS, movimientos sociales) tiene correlaciones positivas moderadas a fuertes entre sí, indicando que los individuos que participan en una actividad tienden a participar en otras. El interés político también muestra una correlación positiva con la autoubicación política, sugiriendo que aquellos con mayor interés político tienden a posicionarse más claramente en el espectro político. Por otro lado, la edad presenta correlaciones negativas con la participación en actividades como RRSS y movimientos sociales, lo que indica que los individuos más jóvenes tienden a participar más en estas actividades. Aunque la percepción de desigualdad está relacionada con la participación política, estas correlaciones no son tan fuertes, sugiriendo una relación más compleja que podría estar influenciada por otros factores.
 
 ```{r}
-psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, 
-                           rrss_pol, part_movsoc, interes_pol, NSE, educacion))
+M2 <- cor(dplyr::select(proc_data, percep_desigualdad, apoyo_causa, part_marcha, part_huelga, rrss_pol, pert_pp, interes_pol, part_movsoc, NSE), use = "complete.obs")
+corrplot.mixed(M2)
 ```
 
-El coeficiente de Alfa de Cronbach calculado para el conjunto de ítems es de 0,65 al 95% de confianza, lo que nos indica una consistencia débil de las respuestas entre los ítems relacionados. En otras palabras, nos indica que la confiabilidad de los ítems es débil. 
+La matriz de correlación muestra las relaciones entre la percepción de desigualdad, diversas formas de participación política y el nivel socioeconómico (NSE). Se observa que la percepción de desigualdad está positivamente correlacionada con la participación en marchas (r = 0.30), huelgas (r = 0.44), redes sociales (RRSS) (r = 0.34), pertenencia a partidos políticos (r = 0.22), interés político (r = 0.34) y movimientos sociales (r = 0.36). Estas correlaciones sugieren que quienes perciben desigualdad tienden a participar más activamente en diversas actividades políticas. Comparando con la matriz anterior, que también muestra interrelaciones positivas entre diferentes formas de participación política y destaca la influencia negativa de la edad en la participación en RRSS y movimientos sociales, esta nueva matriz enfatiza la importancia de la percepción de desigualdad como un factor motivador clave para la participación política.
 
+## Alfa de Cronbach
+
+```{r}
+psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, percep_desigualdad,
+                           rrss_pol, pert_pp, interes_pol, part_movsoc, NSE, educacion, edad, sexo))
+
+```
+
+El coeficiente de Alfa de Cronbach calculado para el conjunto de ítems es de 0.54 al 95% de confianza, lo que indica una consistencia moderada de las respuestas entre los ítems relacionados. En otras palabras, sugiere que la confiabilidad de los ítems es moderada y que hay una relación intermedia entre las variables seleccionadas. Esto implica que, aunque las variables comparten cierta consistencia, no es lo suficientemente alta como para asegurar una fuerte relación entre ellas.
+
+```{r}
+psych::alpha(dplyr::select(proc_data, apoyo_causa, part_marcha, part_huelga, rrss_pol, pert_pp, part_movsoc))
+```
+
+El coeficiente de Alfa de Cronbach calculado para el conjunto de ítems es de 0.61 al 95% de confianza, lo que indica una consistencia interna moderada entre las respuestas de los ítems relacionados. Esto sugiere que la confiabilidad de los ítems es adecuada.
 
 ## Construcción de Escala
+
 ```{r}
 proc_data <- proc_data %>% 
   rowwise() %>% 
-  mutate(participacion = sum(apoyo_causa, part_marcha, part_huelga, 
-                                      rrss_pol, part_movsoc))
-summary(proc_data$participacion)
+  mutate(participacion_politica = sum(apoyo_causa, part_marcha, part_huelga, 
+                                      rrss_pol, pert_pp, part_movsoc, interes_pol, autoubicpol))
+summary(proc_data$participacion_politica)
 ```
+
 ```{r}
-ggplot(proc_data, aes(x = participacion)) +
+ggplot(proc_data, aes(x = participacion_politica)) +
   geom_histogram(binwidth=0.6, colour="black", fill="yellow") +
   theme_bw() +
   xlab("Participación Política") +
   ylab("Cantidad")
+
 ```
 
-Luego de construida una escala de participación, este gráfico muestra que la mayor concentración de casos se encuentra en la categoría 5, sumdo a un promedio de 6,91, podemos afirmar que la participación política de estudiantes universitarios en Chile es baja. 
+La escala de participación política calculada muestra una variabilidad significativa en la participación política de los individuos, con la mayoría de las puntuaciones concentradas en el rango de 9 a 12. La media y la mediana cercanas indican una distribución relativamente simétrica de las puntuaciones, aunque la existencia de valores máximos más altos sugiere que algunos individuos son mucho más activos políticamente.
+
+Luego de construida la escala, el gráfico muestra una distribución asimétrica de la participación política, con una mayor concentración de individuos en las puntuaciones más bajas de la escala. La moda se encuentra alrededor de 10, indicando que la mayoría de los individuos tiene una baja participación política. A medida que aumentan las puntuaciones, la frecuencia de individuos disminuye de manera constante, con muy pocos individuos alcanzando las puntuaciones más altas por encima de 20. Este patrón sugiere que la participación política es predominantemente baja en el conjunto de datos, con pocas personas participando activamente en actividades políticas.
+
+## Regresión Lineal
 
 ```{r}
-proc_data <- proc_data %>% 
-  rowwise() %>% 
-  mutate(interes_politico = sum(interes_pol))
-summary(proc_data$interes_politico)
+proc_data_reg <- proc_data %>% select(participacion_politica, edad, NSE, sexo, educacion, percep_desigualdad)
+
+M <- cor(proc_data_reg, use = "complete.obs") 
+diag(M) = NA 
+rownames(M) <- c("A. Participación Política",
+                 "B. Edad",
+                 "C. NSE",
+                 "D. Sexo",
+                 "E. Educación",
+                 "F. Percepción Desigualdad")
+colnames(M) <-c("(A)", "(B)","(C)", "(D)", "(E)","(F)")
+
+corrplot::corrplot(M,
+                   method = "color", 
+                   addCoef.col = "#000390", 
+                   type = "upper", 
+                   tl.col = "black", 
+                   na.label = "-")
 ```
+
+El gráfico de correlación muestra las relaciones entre varias variables socioeconómicas y la participación política. La participación política tiene una correlación negativa moderada con la edad (-0.25), lo que sugiere que los individuos mayores tienden a participar menos en actividades políticas. También se observa una correlación positiva moderada con la educación (0.31), indicando que un mayor nivel educativo está asociado con una mayor participación política. El nivel socioeconómico y el sexo muestran correlaciones muy débiles con la participación política (-0.05 y -0.01 respectivamente). Además, la percepción de desigualdad tiene una correlación positiva baja (0.06), sugiriendo que aquellos que perciben desigualdad tienden a participar ligeramente más en actividades políticas.
+
 ```{r}
-ggplot(proc_data, aes(x = interes_politico)) +
-  geom_histogram(binwidth=0.6, colour="black", fill="yellow") +
-  theme_bw() +
-  xlab("Interés Político") +
-  ylab("Cantidad")
+#Variable dependiente: Participación Política
+summary(proc_data$participacion_politica)
+
+proc_data_reg <- proc_data_reg %>%
+  mutate(sexo = case_when(sexo == 1 ~ 1, #Para Hombres
+                          sexo == 2 ~ 0)) #Para Mujeres
 ```
 
-Respecto a la costrucción de escala de interés político, el gráfico nos muestra que la mayor parte de los casos se encuentra en la categoría 1 y 2, sumado a un promedio de 1,6 podemos afirmar que el interés político de los estudiantes universitarios en Chile es bajo.
+### Construcción de Modelos
 
+```{r}
+fit01 <- lm(participacion_politica ~ percep_desigualdad + sexo + NSE + educacion + edad, data = proc_data_reg)
+fit02 <- lm(participacion_politica ~ percep_desigualdad + sexo + NSE + educacion, data = proc_data_reg)
+fit03 <- lm(participacion_politica ~ percep_desigualdad + sexo + NSE, data = proc_data_reg)
+fit04 <- lm(participacion_politica ~ percep_desigualdad + sexo, data = proc_data_reg)
+fit05 <- lm(participacion_politica ~ percep_desigualdad, data = proc_data_reg)
+```
+
+```{r}
+#Verificar el número de coeficientes en un modelo para asegurarse de que custom.coef.names tenga la longitud correcta
+length(coef(fit01))
+```
+
+```{r}
+# Definir los nombres personalizados para los coeficientes
+custom_coef_names <- c("Intercepto", "Percepción Desigualdad", "Sexo (mujer)", "NSE Medio/NSE Alto", "Educación", "Edad")
+```
+
+```{r}
+#Mostrar los resultados de los modelos con nombres personalizados para los modelos y coeficientes
+screenreg(list(fit01, fit02, fit03, fit04, fit05),
+          custom.model.names = c("Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5"),
+          custom.coef.names = custom_coef_names)
+```
+
+Para profundizar en el análisis, se realizó una regresión lineal con el fin de validar o rechazar la hipótesis de que la participación política está altamente asociada a la percepción de desigualdad. Este método también permite evaluar cómo otras variables, como sexo, edad, nivel socioeconómico (NSE) y nivel educacional, influyen en la participación política. En este análisis, la variable dependiente es la participación política.\
+\
+En el modelo 1, la educación y la edad resultan ser variables significativamente asociadas a la participación política. La educación muestra un efecto positivo fuerte, mientras que la edad muestra un efecto negativo significativo. La percepción de desigualdad, el sexo y el NSE no son significativos.
+
+En el modelo 2, al eliminar la variable edad, la educación sigue siendo significativa, aunque el poder explicativo del modelo (R\^2) disminuye ligeramente, lo que sugiere que la edad también contribuye a explicar la variabilidad en la participación política.
+
+En el modelo 3, al excluir la educación y la edad, el NSE Medio/Alto se vuelve significativo, lo que sugiere que el nivel socioeconómico tiene un efecto positivo sobre la participación política cuando no se controla por la educación.
+
+El modelo 4 se enfoca en la percepción de desigualdad y el sexo. La percepción de desigualdad se vuelve significativa con un efecto positivo, aunque el R\^2 sigue siendo bajo, indicando una capacidad explicativa limitada del modelo.
+
+El último modelo (5), que solo incluye la percepción de desigualdad, muestra que esta variable, aunque con un coeficiente positivo, no es significativa, y el R\^2 es prácticamente nulo, indicando que este modelo no explica bien la variabilidad en la participación política.
+
+El análisis de regresión revela que la educación y la edad son los predictores más robustos de la participación política, con la educación aumentando y la edad disminuyendo la participación. El nivel socioeconómico también muestra un impacto significativo cuando no se controla por la educación, sugiriendo una interacción entre estas variables. La percepción de desigualdad, aunque significativa en un modelo, tiene un efecto limitado. El sexo no parece influir significativamente en la participación política.
