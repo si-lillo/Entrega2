@@ -1,5 +1,0 @@
-"0","ggplot(proc_data, aes(x = participacion)) +"
-"0","  geom_histogram(binwidth=0.6, colour=""black"", fill=""yellow"") +"
-"0","  theme_bw() +"
-"0","  xlab(""Participación Política"") +"
-"0","  ylab(""Cantidad"")"
