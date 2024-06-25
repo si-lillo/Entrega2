@@ -74,4 +74,69 @@ title-slide-attributes:
 
 ![](Output/graph2.png)
 
-## 
+## Correlación
+
+:::: {.columns}
+
+::: {.column width="50%"}
+:::{.incremental}
+- La participación tiene correlaciones positivas moderadas a fuertes entre sí.
+- El interés político también muestra una correlación positiva con la autoubicación política.
+:::
+:::
+
+::: {.column width="50%"}
+![](Input/imagenes/corr1.jpeg)
+:::
+
+::::
+
+## Correlación
+
+:::: {.columns}
+
+::: {.column width="50%"}
+:::{.incremental}
+- La edad presenta correlaciones negativas con la participación en actividades como RRSS y movimientos sociales.
+- La percepción de desigualdad está relacionada con la participación política, estas correlaciones no son tan fuertes.
+:::
+:::
+
+::: {.column width="50%"}
+![](Input/imagenes/corr1.jpeg)
+:::
+
+::::
+
+## Construcción de escala
+
+La escala de participación política calculada muestra una variabilidad significativa en la participación política de los individuos, con la mayoría de las puntuaciones concentradas en el rango de 9 a 12. La media y la mediana cercanas indican una distribución relativamente simétrica de las puntuaciones, aunque la existencia de valores máximos más altos sugiere que algunos individuos son mucho más activos políticamente.
+
+   Min.    1st Qu.  Median    Mean   3rd Qu.    Max. 
+   
+    8.0     9.0     11.0      11.2    12.0     23.0
+    
+## Construcción de escala
+
+![](Input/imagenes/escala.jpeg)
+
+## Regresión Lineal
+
+![](Input/imagenes/corr reg.jpeg)
+
+## Regresión Lineal
+
+![](Input/imagenes/reg.jpeg)
+
+## Conclusiones
+
+:::{.incremental}
+- El análisis de regresión realizado en el estudio sugiere que la hipótesis central, que plantea que una mayor percepción de la desigualdad social se relaciona con una mayor participación política, no se valida completamente. Aunque la percepción de la desigualdad muestra un efecto positivo en algunos modelos, este efecto no es consistentemente significativo y tiene un poder explicativo limitado.
+:::
+
+
+## Conclusiones
+
+:::{.incremental}
+- La educación y la edad emergen como los predictores más fuertes de la participación política, con la educación aumentando y la edad disminuyendo dicha participación.
+:::

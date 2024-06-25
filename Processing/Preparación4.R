@@ -310,6 +310,9 @@ screenreg(list(fit01, fit02, fit03, fit04, fit05),
           custom.model.names = c("Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5"),
           custom.coef.names = custom_coef_names)
 
+# Predicciones
+
+
 # Función auxiliar para obtener coeficientes adecuados
 get_coef_names <- function(fit, labels) {
   coef_names <- names(coef(fit))
