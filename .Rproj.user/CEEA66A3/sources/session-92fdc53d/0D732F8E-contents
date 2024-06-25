@@ -1,0 +1,77 @@
+---
+title: "Desigualdad y Participación Política"
+author: "Sivonney Lillo Godoy"
+format: revealjs
+editor: visual
+title-slide-attributes:
+  data-background-image: Input/imagenes/pp.png
+  data-background-size: contain
+  data-background-opacity: "0.2"
+
+---
+
+## Introducción 
+
+::: {.incremental}
+- En este estudio, se propone analizar cómo la percepción de la desigualdad social influye en la participación política de los ciudadanos en Chile. 
+- Investigaciones indican que la participación política está estrechamente relacionada con el estatus socioeconómico, siendo aquellos con un nivel socioeconómico más alto más propensos a involucrarse en el sistema político.[@castilloSocialInequalityChanges2014]
+
+:::
+
+## Hipótesis
+
+::: {.incremental}
+
+- La hipótesis central que orientará esta investigación es que a medida que aumenta el nivel de percepción de la desigualdad social, también aumenta su participación política. Se espera que la percepción de la desigualdad social actúe como un predictor principal de la participación política de los chilenos, motivándolos a comprometerse activamente en la esfera política para abogar por cambios sociales y económicos.
+::: 
+
+## Datos
+
+::: {.incremental}
+- Obtenidos a través del Estudio Longuitudinal de Chile (ELSOC_ola2016), con el fin de observar como se comporta la participación política en Chile.
+:::
+
+## Variables
+
+:::: {.columns}
+
+::: {.column width="50%"}
+:::{.incremental}
+- Nivel educacional
+- NSE
+- Sexo
+- Edad
+- Participación: apoyar causas/marchas/huelgas/redes sociales
+:::
+:::
+
+::: {.column width="50%"}
+
+:::{.incremental}
+- Pertenecer a un partido político
+- Interés en la política
+- Participación en Movimientos Sociales
+- Autoubicación Política
+- Desigualdad de ingresos
+:::
+:::
+
+::::
+
+## Descriptivos
+
+![](Input/imagenes/descr1.jpeg)
+
+## Descriptivos
+
+![](Input/imagenes/descr2.jpeg)
+
+## Gráficos
+
+![](Output/graph1.png)
+
+## Gráficos
+
+![](Output/graph2.png)
+
+## 
